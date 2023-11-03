@@ -18,16 +18,16 @@
   <meta name="author" content="xujw">
   <meta name="keywords" content="">
   
-    <meta name="description" content="1234数据库备份还原mysqldump -h192.168.7.55 -P13306 -uroot -pSrm@8517 srm_prod --set-gtid-purged&#x3D;off &gt;&#x2F;home&#x2F;srm_prod20230908.sqlscp &#x2F;home&#x2F;srm_prod20230908.sql root@192.168.7.52:&#x2F;home&#x2F;srm_prod20230908.sqlmy">
+    <meta name="description" content="12345678数据库备份还原mysqldump -h192.168.7.55 -P13306 -uroot -pSrm@8517 srm_prod --set-gtid-purged&#x3D;off &gt;&#x2F;home&#x2F;srm_prod20230908.sqlscp &#x2F;home&#x2F;srm_prod20230908.sql root@192.168.7.52:&#x2F;home&#x2F;srm_prod20230908.s">
 <meta property="og:type" content="article">
-<meta property="og:title" content="日常记录">
-<meta property="og:url" content="https://gitee.com/trxu/2023/11/01/%E5%A4%A9%E5%9C%B0%E5%B8%B8%E5%B7%9E%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:title" content="运维相关（生产BUG）">
+<meta property="og:url" content="https://gitee.com/trxu/2023/11/01/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/index.html">
 <meta property="og:site_name" content="书墨">
-<meta property="og:description" content="1234数据库备份还原mysqldump -h192.168.7.55 -P13306 -uroot -pSrm@8517 srm_prod --set-gtid-purged&#x3D;off &gt;&#x2F;home&#x2F;srm_prod20230908.sqlscp &#x2F;home&#x2F;srm_prod20230908.sql root@192.168.7.52:&#x2F;home&#x2F;srm_prod20230908.sqlmy">
+<meta property="og:description" content="12345678数据库备份还原mysqldump -h192.168.7.55 -P13306 -uroot -pSrm@8517 srm_prod --set-gtid-purged&#x3D;off &gt;&#x2F;home&#x2F;srm_prod20230908.sqlscp &#x2F;home&#x2F;srm_prod20230908.sql root@192.168.7.52:&#x2F;home&#x2F;srm_prod20230908.s">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/my-blog/img/7.jpg">
 <meta property="article:published_time" content="2023-10-31T16:35:29.000Z">
-<meta property="article:modified_time" content="2023-11-02T02:57:10.608Z">
+<meta property="article:modified_time" content="2023-11-02T08:26:43.714Z">
 <meta property="article:author" content="xujw">
 <meta property="article:tag" content="works">
 <meta name="twitter:card" content="summary_large_image">
@@ -37,7 +37,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>日常记录 - 书墨</title>
+  <title>运维相关（生产BUG） - 书墨</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -275,7 +275,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="日常记录"></span>
+            <span id="subtitle" data-typed-text="运维相关（生产BUG）"></span>
           
         </div>
 
@@ -354,12 +354,12 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">日常记录</h1>
+            <h1 style="display: none">运维相关（生产BUG）</h1>
             
             
               <div class="markdown-body">
                 
-                <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">数据库备份还原<br>mysqldump <span class="hljs-operator">-</span>h192<span class="hljs-number">.168</span><span class="hljs-number">.7</span><span class="hljs-number">.55</span> <span class="hljs-operator">-</span>P13306 <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>pSrm<span class="hljs-variable">@8517</span> srm_prod <span class="hljs-comment">--set-gtid-purged=off &gt;/home/srm_prod20230908.sql</span><br>scp <span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql root<span class="hljs-variable">@192</span><span class="hljs-number">.168</span><span class="hljs-number">.7</span><span class="hljs-number">.52</span>:<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql<br>mysql <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>p srm_prod20230808 <span class="hljs-operator">&lt;</span> <span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql<br></code></pre></td></tr></table></figure>
+                <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs sql"><br>数据库备份还原<br>mysqldump <span class="hljs-operator">-</span>h192<span class="hljs-number">.168</span><span class="hljs-number">.7</span><span class="hljs-number">.55</span> <span class="hljs-operator">-</span>P13306 <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>pSrm<span class="hljs-variable">@8517</span> srm_prod <span class="hljs-comment">--set-gtid-purged=off &gt;/home/srm_prod20230908.sql</span><br><br>scp <span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql root<span class="hljs-variable">@192</span><span class="hljs-number">.168</span><span class="hljs-number">.7</span><span class="hljs-number">.52</span>:<span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql<br><br><br>mysql <span class="hljs-operator">-</span>uroot <span class="hljs-operator">-</span>p srm_prod20230808 <span class="hljs-operator">&lt;</span> <span class="hljs-operator">/</span>home<span class="hljs-operator">/</span>srm_prod20230908.sql<br></code></pre></td></tr></table></figure>
 
 <h3 id="JS记录"><a href="#JS记录" class="headerlink" title="JS记录"></a>JS记录</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs js">去除小数点多余的<span class="hljs-number">0</span>：<span class="hljs-title function_">replace</span>(<span class="hljs-regexp">/0*$|\.0*$/</span>, <span class="hljs-string">&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
@@ -382,26 +382,26 @@
 
 
 <h4 id="CPU飙升排查"><a href="#CPU飙升排查" class="headerlink" title="CPU飙升排查"></a>CPU飙升排查</h4><p>top -H -p 9  查看CPU占用高的具体线程，发现耗CPU的线程都是比较小的PID，根据经验可知应该是GC的问题</p>
-<p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230605135218278.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135218278"></p>
-<h4 id="jmap-histo-9-head-20-前20堆栈查看有没有明显错误"><a href="#jmap-histo-9-head-20-前20堆栈查看有没有明显错误" class="headerlink" title="jmap -histo 9 | head -20  前20堆栈查看有没有明显错误"></a>jmap -histo 9 | head -20  前20堆栈查看有没有明显错误</h4><p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230605135357623.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135357623"></p>
-<h4 id="jmap-heap-9-查看gc情况"><a href="#jmap-heap-9-查看gc情况" class="headerlink" title="jmap -heap 9 查看gc情况"></a>jmap -heap 9 查看gc情况</h4><p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230605135423240.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135423240"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230605135218278.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135218278"></p>
+<h4 id="jmap-histo-9-head-20-前20堆栈查看有没有明显错误"><a href="#jmap-histo-9-head-20-前20堆栈查看有没有明显错误" class="headerlink" title="jmap -histo 9 | head -20  前20堆栈查看有没有明显错误"></a>jmap -histo 9 | head -20  前20堆栈查看有没有明显错误</h4><p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230605135357623.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135357623"></p>
+<h4 id="jmap-heap-9-查看gc情况"><a href="#jmap-heap-9-查看gc情况" class="headerlink" title="jmap -heap 9 查看gc情况"></a>jmap -heap 9 查看gc情况</h4><p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230605135423240.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230605135423240"></p>
 <h5 id="下载dump日志进一步分析"><a href="#下载dump日志进一步分析" class="headerlink" title="下载dump日志进一步分析"></a>下载dump日志进一步分析</h5><figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs arcade">jmap -dump:format=b,file=<span class="hljs-regexp">/logs/</span>zheap_$(hostname)_$(<span class="hljs-built_in">date</span> +<span class="hljs-string">&quot;%Y%m%d%H%M%S&quot;</span>).hprof <span class="hljs-number">9</span><br>jstack -F -m <span class="hljs-number">9</span> &gt;&gt; <span class="hljs-regexp">/logs/</span>zjstack_$(hostname)_$(<span class="hljs-built_in">date</span> +<span class="hljs-string">&quot;%Y%m%d%H%M%S&quot;</span>).<span class="hljs-built_in">log</span><br></code></pre></td></tr></table></figure>
 
-<h5 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h5><p><img src="file:///D:/soft/企业微信/WXWork/1688851157041117/Cache/Image/2023-06/企业微信截图_16859459636069.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
-<p><img src="file:///D:/soft/企业微信/WXWork/1688851157041117/Cache/Image/2023-06/企业微信截图_16859470992276.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
-<img src="file:///D:/soft/企业微信/WXWork/1688851157041117/Cache/Image/2023-06/企业微信截图_16859470879029.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img" style="zoom: 50%;" />
+<h5 id="分析结果"><a href="#分析结果" class="headerlink" title="分析结果"></a>分析结果</h5><p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16859459636069.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16859470992276.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16859470879029.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img" style="zoom: 50%;" />
 
 <p>判断是由于用户使用了合同明细的导出功能导致GC异常从而导致CPU飙升至1000%</p>
-<h3 id="CPU飙升排查2"><a href="#CPU飙升排查2" class="headerlink" title="CPU飙升排查2"></a>CPU飙升排查2</h3><h5 id="下载dump日志进行分析"><a href="#下载dump日志进行分析" class="headerlink" title="下载dump日志进行分析"></a>下载dump日志进行分析</h5><p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230616110747670.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616110747670"></p>
+<h3 id="CPU飙升排查2"><a href="#CPU飙升排查2" class="headerlink" title="CPU飙升排查2"></a>CPU飙升排查2</h3><h5 id="下载dump日志进行分析"><a href="#下载dump日志进行分析" class="headerlink" title="下载dump日志进行分析"></a>下载dump日志进行分析</h5><p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230616110747670.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616110747670"></p>
 <p>发现问题出现在groovy代码块中，继续排查</p>
-<p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230616110940883.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616110940883"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230616110940883.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616110940883"></p>
 <p>发现与订单的查询sql语句有关，继续排查</p>
-<p><img src="file:///D:/soft/企业微信/WXWork/1688851157041117/Cache/Image/2023-06/企业微信截图_16868828363055.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E6%88%AA%E5%9B%BE_16868828363055.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <p>找到具体代码块6D5E578AA665F1518A6C，确认是新增/编辑单个入库单接口前-校验入库单信息代码块的问题</p>
-<p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230616111434032.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616111434032"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230616111434032.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230616111434032"></p>
 <p>增加判空处理</p>
 <h3 id="CPU飙升排查3"><a href="#CPU飙升排查3" class="headerlink" title="CPU飙升排查3"></a>CPU飙升排查3</h3><p>下载dump日志分析</p>
-<p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230703161800596.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230703161800596"></p>
+<p><img src="https://gilimall-xae.oss-cn-hangzhou.aliyuncs.com/blog_typora/image-20230703161800596.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230703161800596"></p>
 <p><img src="C:\Users\19069\AppData\Roaming\Typora\typora-user-images\image-20230703161818129.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20230703161818129"></p>
 <p>结合实际操作情况判断是订单报表导出导致的CPU飙升宕机</p>
 
@@ -449,8 +449,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>日常记录</div>
-      <div>https://gitee.com/trxu/2023/11/01/天地常州记录/</div>
+      <div>运维相关（生产BUG）</div>
+      <div>https://gitee.com/trxu/2023/11/01/运维相关/</div>
     </div>
     <div class="license-meta">
       
@@ -497,12 +497,6 @@
                   </article>
                   <article class="post-next col-6">
                     
-                    
-                      <a href="/my-blog/2023/02/25/sql/" title="sql">
-                        <span class="hidden-mobile">sql</span>
-                        <span class="visible-mobile">下一篇</span>
-                        <i class="iconfont icon-arrowright"></i>
-                      </a>
                     
                   </article>
                 </div>

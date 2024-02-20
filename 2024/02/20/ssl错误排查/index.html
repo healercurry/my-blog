@@ -11,13 +11,13 @@
   <link rel="icon" href="/my-blog/img/6.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
-
+  
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
-
+  
   <meta name="theme-color" content="#2f4154">
   <meta name="author" content="xujw">
   <meta name="keywords" content="">
-
+  
     <meta name="description" content="SSL报错错误信息代码：Caused by: java.lang.NoSuchMethodError: sun.security.ssl.CipherSuite._jr$ig$keyExchange(Ljava&#x2F;lang&#x2F;Object;)Lsun&#x2F;security&#x2F;ssl&#x2F;CipherSuite$KeyExchange; 百度上没有正确的答案，所以求助gpt后   所以最后添加useSSL&#x3D;fal">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SSL错误">
@@ -27,16 +27,16 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/my-blog/img/7.jpg">
 <meta property="article:published_time" content="2024-02-20T06:44:34.510Z">
-<meta property="article:modified_time" content="2024-02-20T07:12:06.350Z">
+<meta property="article:modified_time" content="2024-02-20T07:17:02.066Z">
 <meta property="article:author" content="xujw">
 <meta property="article:tag" content="works">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://gitee.com/my-blog/img/7.jpg">
-
-
+  
+  
     <meta name="referrer" content="no-referrer-when-downgrade">
-
-
+  
+  
   <title>SSL错误 - 书墨</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
@@ -65,13 +65,13 @@
 
 
   <link id="highlight-css" rel="stylesheet" href="/my-blog/css/highlight.css" />
-
+  
     <link id="highlight-css-dark" rel="stylesheet" href="/my-blog/css/highlight-dark.css" />
+  
 
 
 
-
-
+  
 <link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
 <link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
@@ -90,33 +90,33 @@
   </script>
   <script  src="/my-blog/js/utils.js" ></script>
   <script  src="/my-blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  
 <meta name="generator" content="Hexo 5.4.2"></head>
 
 
 <body>
-
+  
 
   <header>
-
+    
 
 <div class="header-inner" style="height: 70vh;">
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
@@ -134,107 +134,107 @@
     <!-- Collapsible content -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav ml-auto text-center">
-
-
-
-
-
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/">
                 <i class="iconfont icon-home-fill"></i>
                 首页
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/archives">
                 <i class="iconfont icon-books"></i>
                 归档
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/categories">
                 <i class="iconfont icon-th-large"></i>
                 分类
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/tags/">
                 <i class="iconfont icon-tags-fill"></i>
                 标签
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/about/">
                 <i class="iconfont icon-user-fill"></i>
                 关于
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/remark/">
-
+                
                 留言板
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/talking/">
-
+                
                 说说
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item">
               <a class="nav-link" href="/my-blog/links/">
                 <i class="iconfont icon-link-fill"></i>
                 友链
               </a>
             </li>
-
-
-
-
-
-
+          
+        
+          
+          
+          
+          
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
                  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -242,55 +242,55 @@
                 文档
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-
-
-
+                
+                  
+                  
+                  
                   <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
-
+                    
                     主题博客
                   </a>
-
-
-
-
+                
+                  
+                  
+                  
                   <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
-
+                    
                     配置指南
                   </a>
-
-
-
-
+                
+                  
+                  
+                  
                   <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
-
+                    
                     图标用法
                   </a>
-
+                
               </div>
             </li>
-
-
-
+          
+        
+        
           <li class="nav-item" id="search-btn">
             <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
               &nbsp;<i class="iconfont icon-search"></i>&nbsp;
             </a>
           </li>
-
-
-
+          
+        
+        
           <li class="nav-item" id="color-toggle-btn">
             <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
-
+        
       </ul>
     </div>
   </div>
 </nav>
 
-
+  
 
 <div id="banner" class="banner" parallax=true
      style="background: url('/my-blog/img/default.png') no-repeat center center; background-size: cover;">
@@ -298,62 +298,62 @@
     <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
-
+          
             <span id="subtitle" data-typed-text="SSL错误"></span>
-
+          
         </div>
 
-
-
+        
+          
   <div class="mt-3">
-
+    
       <span class="post-meta mr-2">
         <i class="iconfont icon-author" aria-hidden="true"></i>
         xujw
       </span>
-
-
+    
+    
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
         <time datetime="2024-02-20 14:44" pubdate>
            2024 年 02 月 20 日 , 下午 02:44 , 星期二
         </time>
       </span>
-
+    
   </div>
 
   <div class="mt-1">
-
+    
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
-
+        
           <!-- compatible with older versions-->
           199 字
-
+        
       </span>
+    
 
-
-
+    
       <span class="post-meta mr-2">
         <i class="iconfont icon-clock-fill"></i>
-
-
-
+        
+        
+        
           <!-- compatible with older versions-->
           2 分钟
-
+        
       </span>
+    
 
-
-
-
+    
+    
   </div>
 
 
-
+        
       </div>
 
-
+      
     </div>
   </div>
 </div>
@@ -363,13 +363,13 @@
   </header>
 
   <main>
-
-
+    
+      
 
 <div class="container-fluid nopadding-x">
   <div class="row nomargin-x">
     <div class="side-col d-none d-lg-block col-lg-2">
-
+      
 
     </div>
 
@@ -379,57 +379,57 @@
           <article class="post-content mx-auto">
             <!-- SEO header -->
             <h1 style="display: none">SSL错误</h1>
-
-
+            
+            
               <div class="markdown-body">
-
+                
                 <h4 id="SSL报错"><a href="#SSL报错" class="headerlink" title="SSL报错"></a>SSL报错</h4><p>错误信息代码：Caused by: java.lang.NoSuchMethodError: sun.security.ssl.CipherSuite._jr$ig$keyExchange(Ljava/lang/Object;)Lsun/security/ssl/CipherSuite$KeyExchange;</p>
 <p>百度上没有正确的答案，所以求助gpt后</p>
-<p><img src="/my-blog/source/pics/image-20240218231425314.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240218231425314"></p>
-<p><img src="/my-blog/source/pics/image-20240218231502694.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240218231502694"></p>
+<p><img src="/my-blog/.com//image-20240218231425314.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240218231425314"></p>
+<p><img src="/my-blog/.com//image-20240218231502694.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240218231502694"></p>
 <p>所以最后添加useSSL=false解决问题</p>
 
-
+                
               </div>
-
+            
             <hr/>
             <div>
               <div class="post-metas my-3">
-
+  
     <div class="post-meta mr-3 d-flex align-items-center">
       <i class="iconfont icon-category"></i>
-
+      
 
 <span class="category-chains">
-
-
-
+  
+  
+    
       <span class="category-chain">
-
+        
   <a href="/my-blog/categories/%E5%90%8E%E7%AB%AF/" class="category-chain-item">后端</a>
-
-
+  
+  
 
       </span>
-
-
+    
+  
 </span>
 
     </div>
-
-
+  
+  
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
-
+      
         <a href="/my-blog/tags/works/">#works</a>
-
+      
     </div>
-
+  
 </div>
 
 
-
-
+              
+  
 
   <div class="license-box my-3">
     <div class="license-title">
@@ -437,65 +437,65 @@
       <div>https://gitee.com/trxu/2024/02/20/ssl错误排查/</div>
     </div>
     <div class="license-meta">
-
+      
         <div class="license-meta-item">
           <div>作者</div>
           <div>xujw</div>
         </div>
-
-
+      
+      
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
           <div>2024年2月20日</div>
         </div>
-
-
-
+      
+      
+      
         <div class="license-meta-item">
           <div>许可协议</div>
           <div>
-
-
-
+            
+              
+              
                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
                   <span class="hint--top hint--rounded" aria-label="BY - 署名">
                     <i class="iconfont icon-by"></i>
                   </span>
                 </a>
-
-
+              
+            
           </div>
         </div>
-
+      
     </div>
     <div class="license-icon iconfont"></div>
   </div>
 
 
 
-
+              
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
-
-
+                    
+                    
                   </article>
                   <article class="post-next col-6">
-
-
+                    
+                    
                       <a href="/my-blog/2023/11/01/%E8%BF%90%E7%BB%B4%E7%9B%B8%E5%85%B3/" title="运维相关（生产BUG）">
                         <span class="hidden-mobile">运维相关（生产BUG）</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
-
+                    
                   </article>
                 </div>
-
+              
             </div>
 
-
+            
   <article id="comments" lazyload>
-
+    
 
   </article>
 
@@ -506,7 +506,7 @@
     </div>
 
     <div class="side-col d-none d-lg-block col-lg-2">
-
+      
   <aside class="sidebar" style="margin-left: -1rem">
     <div id="toc">
   <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
@@ -526,6 +526,23 @@
 
 
 
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
 
 
 
@@ -533,32 +550,15 @@
 
 
 
+    
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
       <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
         <i class="iconfont icon-arrowup" aria-hidden="true"></i>
       </a>
+    
 
-
-
+    
       <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
      aria-hidden="true">
   <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
@@ -580,51 +580,51 @@
   </div>
 </div>
 
+    
 
-
-
+    
   </main>
 
   <footer>
     <div class="footer-inner">
-
+  
     <div class="footer-content">
-       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a>
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
     </div>
-
-
+  
+  
     <div class="statistics">
+  
+  
 
-
-
-
-
+  
+    
       <span id="busuanzi_container_site_pv" style="display: none">
-        总访问量
+        总访问量 
         <span id="busuanzi_value_site_pv"></span>
          次
       </span>
-
-
+    
+    
       <span id="busuanzi_container_site_uv" style="display: none">
-        总访客数
+        总访客数 
         <span id="busuanzi_value_site_uv"></span>
          人
       </span>
-
-
-
+    
+    
+  
 </div>
 
-
-
-
+  
+  
+  
 </div>
 
   </footer>
 
   <!-- Scripts -->
-
+  
   <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
   <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
 
@@ -652,23 +652,23 @@
         return;
       }
       var text = subtitle.getAttribute('data-typed-text');
-
+      
         typing(text);
-
+      
     })(window, document);
   </script>
 
 
 
 
-
+  
     <script  src="/my-blog/js/img-lazyload.js" ></script>
+  
 
 
 
 
-
-
+  
 <script>
   Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.2/tocbot.min.js', function() {
     var toc = jQuery('#toc');
@@ -713,7 +713,7 @@
   <script>Fluid.plugins.codeWidget();</script>
 
 
-
+  
 <script>
   Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
     window.anchors.options = {
@@ -751,7 +751,7 @@
 </script>
 
 
-
+  
 <script>
   Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
     Fluid.plugins.fancyBox();
@@ -768,7 +768,7 @@
 
 
 
-
+  
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
 <script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
@@ -781,7 +781,7 @@
 <script  src="/my-blog/js/boot.js" ></script>
 
 
-
+  
 
   <noscript>
     <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>

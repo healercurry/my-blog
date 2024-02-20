@@ -8,7 +8,7 @@
     <link href="/my-blog/2024/02/20/ssl%E9%94%99%E8%AF%AF%E6%8E%92%E6%9F%A5/"/>
     <url>/my-blog/2024/02/20/ssl%E9%94%99%E8%AF%AF%E6%8E%92%E6%9F%A5/</url>
     
-    <content type="html"><![CDATA[<h4 id="SSL报错"><a href="#SSL报错" class="headerlink" title="SSL报错"></a>SSL报错</h4><p>错误信息代码：Caused by: java.lang.NoSuchMethodError: sun.security.ssl.CipherSuite._jr$ig$keyExchange(Ljava/lang/Object;)Lsun/security/ssl/CipherSuite$KeyExchange;</p><p>百度上没有正确的答案，所以求助gpt后</p><p><img src="my-blog/pics/image-20240218231425314.png" alt="image-20240218231425314"></p><p><img src="my-blog/pics/image-20240218231502694.png" alt="image-20240218231502694"></p><p>所以最后添加useSSL=false解决问题</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="SSL报错"><a href="#SSL报错" class="headerlink" title="SSL报错"></a>SSL报错</h4><p>错误信息代码：Caused by: java.lang.NoSuchMethodError: sun.security.ssl.CipherSuite._jr$ig$keyExchange(Ljava/lang/Object;)Lsun/security/ssl/CipherSuite$KeyExchange;</p><p>百度上没有正确的答案，所以求助gpt后</p><p><img src="/my-blog/pics/image-20240218231425314.png" alt="image-20240218231425314"></p><p><img src="/my-blog/pics/image-20240218231502694.png" alt="image-20240218231502694"></p><p>所以最后添加useSSL=false解决问题</p>]]></content>
     
     
     <categories>

@@ -1,0 +1,710 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/my-blog/img/fluid.png">
+  <link rel="icon" href="/my-blog/img/6.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="xujw">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Kubectl 常用参数分类 基础命令：create，delete，get，run，expose，set，explain，editcreate 命令：根据文件或者输入来创建资源 1234# 创建Deployment和Service资源$ kubectl create -f demo-deployment.yaml$ kubectl create -f demo-service.yaml  dele">
+<meta property="og:type" content="website">
+<meta property="og:title" content="page.title">
+<meta property="og:url" content="https://gitee.com/trxu/pr/Kubectl%20%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%E5%A4%A7%E5%85%A8.html">
+<meta property="og:site_name" content="书墨">
+<meta property="og:description" content="Kubectl 常用参数分类 基础命令：create，delete，get，run，expose，set，explain，editcreate 命令：根据文件或者输入来创建资源 1234# 创建Deployment和Service资源$ kubectl create -f demo-deployment.yaml$ kubectl create -f demo-service.yaml  dele">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-6638172/5btrrnhx11.jpeg">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-6638172/185w2mdkuc.png">
+<meta property="og:image" content="https://ask.qcloudimg.com/http-save/yehe-6638172/7punynhvat.png">
+<meta property="article:published_time" content="2024-02-29T09:05:22.491Z">
+<meta property="article:modified_time" content="2024-02-29T08:56:52.008Z">
+<meta property="article:author" content="xujw">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ask.qcloudimg.com/http-save/yehe-6638172/5btrrnhx11.jpeg">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>page.title - 书墨</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/my-blog/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/my-blog/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/my-blog/css/highlight-dark.css" />
+  
+
+
+
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_3846514_kabxni94auf.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/shubiao.css">
+<link rel="stylesheet" href="//cdn.jsdelivr.net/gh/bynotes/texiao/source/css/gundongtiao.css">
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"gitee.com","root":"/my-blog/","version":"1.9.3","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/public/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/my-blog/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/my-blog/js/utils.js" ></script>
+  <script  src="/my-blog/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 60vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/my-blog/">
+      <strong>书墨 的博客</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/archives">
+                <i class="iconfont icon-books"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/categories">
+                <i class="iconfont icon-th-large"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/remark/">
+                
+                留言板
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/talking/">
+                
+                说说
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/my-blog/links/">
+                <i class="iconfont icon-link-fill"></i>
+                友链
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" target="_self" href="javascript:;" role="button"
+                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="iconfont icon-book"></i>
+                文档
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/">
+                    
+                    主题博客
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/guide/">
+                    
+                    配置指南
+                  </a>
+                
+                  
+                  
+                  
+                  <a class="dropdown-item" target="_blank" rel="noopener" href="https://hexo.fluid-dev.com/docs/icon/">
+                    
+                    图标用法
+                  </a>
+                
+              </div>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/my-blog/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="page.title"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          >
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+<article class="page-content">
+  <h3 id="Kubectl-常用参数分类"><a href="#Kubectl-常用参数分类" class="headerlink" title="Kubectl 常用参数分类"></a><strong>Kubectl 常用参数分类</strong></h3><p><img src="https://ask.qcloudimg.com/http-save/yehe-6638172/5btrrnhx11.jpeg" srcset="/my-blog/public/img/loading.gif" lazyload></p>
+<h3 id="基础命令：create，delete，get，run，expose，set，explain，edit"><a href="#基础命令：create，delete，get，run，expose，set，explain，edit" class="headerlink" title="基础命令：create，delete，get，run，expose，set，explain，edit"></a><strong>基础命令：create，delete，get，run，expose，set，explain，edit</strong></h3><p><strong>create 命令</strong>：根据文件或者输入来创建资源</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 创建Deployment和Service资源</span><br><br><span class="hljs-variable">$</span> kubectl create <span class="hljs-operator">-f</span> demo<span class="hljs-literal">-deployment</span>.yaml<br><span class="hljs-variable">$</span> kubectl create <span class="hljs-operator">-f</span> demo<span class="hljs-literal">-service</span>.yaml<br></code></pre></td></tr></table></figure>
+
+<p><strong>delete 命令</strong>：删除资源</p>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 根据yaml文件删除对应的资源，但是yaml文件并不会被删除，这样更加高效</span><br><br><span class="hljs-variable">$</span> kubectl delete <span class="hljs-operator">-f</span> demo<span class="hljs-literal">-deployment</span>.yaml<br><span class="hljs-variable">$</span> kubectl delete <span class="hljs-operator">-f</span> demo<span class="hljs-literal">-service</span>.yaml<br><br><span class="hljs-comment"># 也可以通过具体的资源名称来进行删除，使用这个删除资源，同时删除deployment和service资源</span><br><br><span class="hljs-variable">$</span> kubectl delete 具体的资源名称<br></code></pre></td></tr></table></figure>
+
+<p><strong>get 命令</strong> ：获得资源信息</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 查看所有的资源信息</span><br>$ kubectl <span class="hljs-built_in">get</span> all<br>$ kubectl <span class="hljs-built_in">get</span> --all-namespaces<br><br><span class="hljs-comment"># 查看pod列表</span><br>$ kubectl <span class="hljs-built_in">get</span> pod<br><br><span class="hljs-comment"># 显示pod节点的标签信息</span><br>$ kubectl <span class="hljs-built_in">get</span> pod --show-labels<br><br><span class="hljs-comment"># 根据指定标签匹配到具体的pod</span><br>$ kubectl <span class="hljs-built_in">get</span> pods -l <span class="hljs-attribute">app</span>=example<br><br><span class="hljs-comment"># 查看node节点列表</span><br>$ kubectl <span class="hljs-built_in">get</span> node<br><br><span class="hljs-comment"># 显示node节点的标签信息</span><br>$ kubectl <span class="hljs-built_in">get</span> node --show-labels<br><br><span class="hljs-comment"># 查看pod详细信息，也就是可以查看pod具体运行在哪个节点上（ip地址信息）</span><br>$ kubectl <span class="hljs-built_in">get</span> pod -o wide<br><br><span class="hljs-comment"># 查看服务的详细信息，显示了服务名称，类型，集群ip，端口，时间等信息</span><br>$ kubectl <span class="hljs-built_in">get</span> svc<br>$ kubectl <span class="hljs-built_in">get</span> svc -n kube-system<br><br><span class="hljs-comment"># 查看命名空间</span><br>$ kubectl <span class="hljs-built_in">get</span> ns<br>$ kubectl <span class="hljs-built_in">get</span> namespaces<br><br><span class="hljs-comment"># 查看所有pod所属的命名空间</span><br>$ kubectl <span class="hljs-built_in">get</span> pod --all-namespaces<br><br><span class="hljs-comment"># 查看所有pod所属的命名空间并且查看都在哪些节点上运行</span><br>$ kubectl <span class="hljs-built_in">get</span> pod --all-namespaces  -o wide<br><br><span class="hljs-comment"># 查看目前所有的replica set，显示了所有的pod的副本数，以及他们的可用数量以及状态等信息</span><br>$ kubectl <span class="hljs-built_in">get</span> rs<br><br><span class="hljs-comment"># 查看已经部署了的所有应用，可以看到容器，以及容器所用的镜像，标签等信息</span><br>$ kubectl <span class="hljs-built_in">get</span> deploy -o wide<br>$ kubectl <span class="hljs-built_in">get</span> deployments -o wide<br></code></pre></td></tr></table></figure>
+
+<p><strong>run 命令</strong>：在集群中创建并运行一个或多个<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tcr?from_column=20065&from=20065">容器镜像</a>。</p>
+<blockquote>
+<p><code>语法</code>：run NAME –image=image [–env=”key=value”] [–port=port] [–replicas=replicas] [–dry-run=bool] [–overrides=inline-json] [–command] – [COMMAND] [args…]</p>
+</blockquote>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima"># 示例，运行一个名称为nginx，副本数为<span class="hljs-number">3</span>，标签为app=<span class="hljs-built_in">example</span>，镜像为nginx:<span class="hljs-number">1.10</span>，端口为<span class="hljs-number">80</span>的容器实例<br><br>$ kubectl run nginx --replicas=<span class="hljs-number">3</span> --<span class="hljs-built_in">labels</span>=<span class="hljs-string">&quot;app=example&quot;</span> --<span class="hljs-built_in">image</span>=nginx:<span class="hljs-number">1.10</span> --port=<span class="hljs-number">80</span><br># 示例，运行一个名称为nginx，副本数为<span class="hljs-number">3</span>，标签为app=<span class="hljs-built_in">example</span>，镜像为nginx:<span class="hljs-number">1.10</span>，端口为<span class="hljs-number">80</span>的容器实例，并绑定到k8s-node1上$ kubectl run nginx --<span class="hljs-built_in">image</span>=nginx:<span class="hljs-number">1.10</span> --replicas=<span class="hljs-number">3</span> --<span class="hljs-built_in">labels</span>=<span class="hljs-string">&quot;app=example&quot;</span> --port=<span class="hljs-number">80</span> --overrides=&#x27;&#123;<span class="hljs-string">&quot;apiVersion&quot;</span>:<span class="hljs-string">&quot;apps/v1&quot;</span>,<span class="hljs-string">&quot;spec&quot;</span>:&#123;<span class="hljs-string">&quot;template&quot;</span>:&#123;<span class="hljs-string">&quot;spec&quot;</span>:&#123;<span class="hljs-string">&quot;nodeSelector&quot;</span>:&#123;<span class="hljs-string">&quot;kubernetes.io/hostname&quot;</span>:<span class="hljs-string">&quot;k8s-node1&quot;</span>&#125;&#125;&#125;&#125;&#125;&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><code>更详细用法参见</code>：<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/468.html">http://docs.kubernetes.org.cn/468.html</a></p>
+<p><strong>expose 命令</strong>：创建一个service服务，并且暴露端口让外部可以访问</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 创建一个nginx服务并且暴露端口让外界可以访问</span><br><br>$ kubectl expose deployment nginx <span class="hljs-attribute">--port</span>=88 <span class="hljs-attribute">--type</span>=NodePort <span class="hljs-attribute">--target-port</span>=80 <span class="hljs-attribute">--name</span>=nginx-service<br></code></pre></td></tr></table></figure>
+
+<p><code>更多expose详细用法参见</code>：<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/475.html">http://docs.kubernetes.org.cn/475.html</a></p>
+<p><strong>set 命令</strong>：配置应用的一些特定资源，也可以修改应用已有的资源</p>
+<blockquote>
+<p>使用 <code>kubectl set --help</code>查看，它的子命令，<code>env</code>，<code>image</code>，<code>resources</code>，<code>selector</code>，<code>serviceaccount</code>，<code>subject</code>。</p>
+<p><code>语法</code>：resources (-f FILENAME | TYPE NAME) ([–limits=LIMITS &amp; –requests=REQUESTS]</p>
+</blockquote>
+<p><code>set 命令详情参见</code>：<a target="_blank" rel="noopener" href="http://docs.kubernetes.org.cn/669.html">http://docs.kubernetes.org.cn/669.html</a></p>
+<h4 id="kubectl-set-resources-命令"><a href="#kubectl-set-resources-命令" class="headerlink" title="kubectl set resources 命令"></a><strong>kubectl set resources 命令</strong></h4><p>这个命令用于设置资源的一些范围限制。</p>
+<p>资源对象中的Pod可以指定计算资源需求（CPU-单位m、内存-单位Mi），即使用的最小资源请求（Requests），限制（Limits）的最大资源需求，Pod将保证使用在设置的资源数量范围。</p>
+<p>对于每个Pod资源，如果指定了<code>Limits</code>（限制）值，并省略了<code>Requests</code>（请求），则<code>Requests</code>默认为<code>Limits</code>的值。</p>
+<p><code>可用资源对象包括(支持大小写)</code>：<code>replicationcontroller</code>、<code>deployment</code>、<code>daemonset</code>、<code>job</code>、<code>replicaset</code>。</p>
+<p><code>例如</code>：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 将deployment的nginx容器cpu限制为“200m”，将内存设置为“512Mi”</span><br>$ kubectl <span class="hljs-built_in">set</span> resources deployment nginx <span class="hljs-attribute">-c</span>=nginx <span class="hljs-attribute">--limits</span>=cpu=200m,memory=512Mi<br><br><span class="hljs-comment"># 设置所有nginx容器中 Requests和Limits</span><br>$ kubectl <span class="hljs-built_in">set</span> resources deployment nginx <span class="hljs-attribute">--limits</span>=cpu=200m,memory=512Mi <span class="hljs-attribute">--requests</span>=cpu=100m,memory=256Mi<br><br><span class="hljs-comment"># 删除nginx中容器的计算资源值</span><br>$ kubectl <span class="hljs-built_in">set</span> resources deployment nginx <span class="hljs-attribute">--limits</span>=cpu=0,memory=0 <span class="hljs-attribute">--requests</span>=cpu=0,memory=0<br></code></pre></td></tr></table></figure>
+
+<h4 id="kubectl-set-selector-命令"><a href="#kubectl-set-selector-命令" class="headerlink" title="kubectl set selector 命令"></a><strong>kubectl set selector 命令</strong></h4><p>设置资源的 <code>selector</code>（选择器）。如果在调用”set selector”命令之前已经存在选择器，则新创建的选择器将覆盖原来的选择器。</p>
+<p><code>selector</code>必须以字母或数字开头，最多包含63个字符，可使用：字母、数字、连字符” - “ 、点”.”和下划线” _ “。如果指定了–resource-version，则更新将使用此资源版本，否则将使用现有的资源版本。</p>
+<p><code>注意</code>：目前<code>selector</code>命令只能用于<code>Service</code>对象。</p>
+<blockquote>
+<p><code>语法</code>：selector (-f FILENAME | TYPE NAME) EXPRESSIONS [–resource-version=version]</p>
+</blockquote>
+<h4 id="kubectl-set-image-命令"><a href="#kubectl-set-image-命令" class="headerlink" title="kubectl set image 命令"></a><strong>kubectl set image 命令</strong></h4><p>用于更新现有资源的<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/tke?from_column=20065&from=20065">容器</a>镜像。</p>
+<p>可用资源对象包括：<code>pod (po)</code>、<code>replicationcontroller (rc)</code>、<code>deployment (deploy)</code>、<code>daemonset (ds)</code>、<code>job</code>、<code>replicaset (rs)</code>。</p>
+<blockquote>
+<p><code>语法</code>：image (-f FILENAME | TYPE NAME) CONTAINER_NAME_1=CONTAINER_IMAGE_1 … CONTAINER_NAME_N=CONTAINER_IMAGE_N</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 将deployment中的nginx容器镜像设置为“nginx：1.9.1”</span><br>$ kubectl <span class="hljs-built_in">set</span> image deployment/nginx <span class="hljs-attribute">busybox</span>=busybox <span class="hljs-attribute">nginx</span>=nginx:1.9.1<br><br><span class="hljs-comment"># 所有deployment和rc的nginx容器镜像更新为“nginx：1.9.1”</span><br>$ kubectl <span class="hljs-built_in">set</span> image deployments,rc <span class="hljs-attribute">nginx</span>=nginx:1.9.1 --all<br><br><span class="hljs-comment"># 将daemonset abc的所有容器镜像更新为“nginx：1.9.1”</span><br>$ kubectl <span class="hljs-built_in">set</span> image daemonset abc *=nginx:1.9.1<br><br><span class="hljs-comment"># 从本地文件中更新nginx容器镜像</span><br>$ kubectl <span class="hljs-built_in">set</span> image -f path/<span class="hljs-keyword">to</span>/file.yaml <span class="hljs-attribute">nginx</span>=nginx:1.9.1 --local -o yaml<br></code></pre></td></tr></table></figure>
+
+<p><strong>explain 命令</strong>：用于显示资源文档信息</p>
+<p><strong>edit 命令</strong>: 用于编辑资源信息</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 编辑Deployment nginx的一些信息</span><br>$ kubectl <span class="hljs-built_in">edit</span> deployment nginx<br><br><span class="hljs-comment"># 编辑service类型的nginx的一些信息</span><br>$ kubectl <span class="hljs-built_in">edit</span> service/nginx<br></code></pre></td></tr></table></figure>
+
+<h3 id="设置命令：label，annotate，completion"><a href="#设置命令：label，annotate，completion" class="headerlink" title="设置命令：label，annotate，completion"></a><strong>设置命令：label，annotate，completion</strong></h3><p><strong>label命令</strong>: 用于更新（增加、修改或删除）资源上的 label（标签）</p>
+<ul>
+<li>  <code>label</code> 必须以字母或数字开头，可以使用字母、数字、连字符、点和下划线，最长63个字符。</li>
+<li>  如果 <code>--overwrite</code> 为 <code>true</code>，则可以覆盖已有的<code>label</code>，否则尝试覆盖<code>label</code>将会报错。</li>
+<li>  如果指定了<code>--resource-version</code>，则更新将使用此资源版本，否则将使用现有的资源版本。</li>
+</ul>
+<blockquote>
+<p><code>语法</code>：label [–overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–resource-version=version]</p>
+</blockquote>
+<p><code>例</code>：</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 给名为foo的Pod添加label unhealthy=true</span><br>$ kubectl label pods foo <span class="hljs-attribute">unhealthy</span>=<span class="hljs-literal">true</span><br><br><span class="hljs-comment"># 给名为foo的Pod修改label 为 &#x27;status&#x27; / value &#x27;unhealthy&#x27;，且覆盖现有的value</span><br>$ kubectl label --overwrite pods foo <span class="hljs-attribute">status</span>=unhealthy<br><br><span class="hljs-comment"># 给 namespace 中的所有 pod 添加 label</span><br>$ kubectl label  pods --all <span class="hljs-attribute">status</span>=unhealthy<br><br><span class="hljs-comment"># 仅当resource-version=1时才更新 名为foo的Pod上的label</span><br>$ kubectl label pods foo <span class="hljs-attribute">status</span>=unhealthy <span class="hljs-attribute">--resource-version</span>=1<br><br><span class="hljs-comment"># 删除名为“bar”的label 。（使用“ - ”减号相连）</span><br>$ kubectl label pods foo bar-<br></code></pre></td></tr></table></figure>
+
+<p><strong>annotate命令</strong>：更新一个或多个资源的Annotations信息。也就是注解信息，可以方便的查看做了哪些操作。</p>
+<ul>
+<li>  <code>Annotations</code>由key/value组成。</li>
+<li>  <code>Annotations</code>的目的是存储辅助数据，特别是通过工具和系统扩展操作的数据，更多介绍在这里。</li>
+<li>  如果<code>--overwrite</code>为<code>true</code>，现有的<code>annotations</code>可以被覆盖，否则试图覆盖<code>annotations</code>将会报错。</li>
+<li>  如果设置了<code>--resource-version</code>，则更新将使用此<code>resource version</code>，否则将使用原有的<code>resource version</code>。</li>
+</ul>
+<blockquote>
+<p><code>语法</code>：annotate [–overwrite] (-f FILENAME | TYPE NAME) KEY_1=VAL_1 … KEY_N=VAL_N [–resource-version=version]</p>
+</blockquote>
+<p><code>例子</code>：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">更新Pod“foo”，设置annotation “description”的value “my frontend”，如果同一个annotation多次设置，则只使用最后设置的value值</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate pods foo description=<span class="hljs-string">&#x27;my frontend&#x27;</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">根据“pod.json”中的<span class="hljs-built_in">type</span>和name更新pod的annotation</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate -f pod.json description=<span class="hljs-string">&#x27;my frontend&#x27;</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">更新Pod<span class="hljs-string">&quot;foo&quot;</span>，设置annotation“description”的value“my frontend running nginx”，覆盖现有的值</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate --overwrite pods foo description=<span class="hljs-string">&#x27;my frontend running nginx&#x27;</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">更新 namespace中的所有pod</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate pods --all description=<span class="hljs-string">&#x27;my frontend running nginx&#x27;</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">只有当resource-version为1时，才更新pod <span class="hljs-string">&#x27;foo&#x27;</span></span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate pods foo description=<span class="hljs-string">&#x27;my frontend running nginx&#x27;</span> --resource-version=1</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">通过删除名为“description”的annotations来更新pod <span class="hljs-string">&#x27;foo&#x27;</span>。</span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">不需要 -overwrite flag。</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl annotate pods foo description-</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>completion命令</strong>：用于设置 kubectl 命令自动补全</p>
+<p><code>BASH</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在 bash 中设置当前 shell 的自动补全，要先安装 bash-completion 包</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">source</span> &lt;(kubectl completion bash)</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">在您的 bash shell 中永久的添加自动补全</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;source &lt;(kubectl completion bash)&quot;</span> &gt;&gt; ~/.bashrc</span><br></code></pre></td></tr></table></figure>
+
+<p><code>ZSH</code></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">在 zsh 中设置当前 shell 的自动补全</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">source</span> &lt;(kubectl completion zsh)</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">在您的 zsh shell 中永久的添加自动补全</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash"><span class="hljs-built_in">echo</span> <span class="hljs-string">&quot;if [ <span class="hljs-variable">$commands</span>[kubectl] ]; then source &lt;(kubectl completion zsh); fi&quot;</span> &gt;&gt; ~/.zshrc</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="kubectl-部署命令：rollout，rolling-update，scale，autoscale"><a href="#kubectl-部署命令：rollout，rolling-update，scale，autoscale" class="headerlink" title="kubectl 部署命令：rollout，rolling-update，scale，autoscale"></a><strong>kubectl 部署命令：rollout，rolling-update，scale，autoscale</strong></h3><p><strong>rollout 命令</strong>: 用于对资源进行管理</p>
+<p>可用资源包括：<code>deployments</code>，<code>daemonsets</code>。</p>
+<p><code>子命令</code>：</p>
+<ul>
+<li>  <code>history</code>（查看历史版本）</li>
+<li>  <code>pause</code>（暂停资源）</li>
+<li>  <code>resume</code>（恢复暂停资源）</li>
+<li>  <code>status</code>（查看资源状态）</li>
+<li>  <code>undo</code>（回滚版本）</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">语法</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl rollout SUBCOMMAND</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">回滚到之前的deployment</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl rollout undo deployment/abc</span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">查看daemonet的状态</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl rollout status daemonset/foo</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>rolling-update命令</strong>: 执行指定ReplicationController的滚动更新。</p>
+<p>该命令创建了一个新的<code>RC</code>， 然后一次更新一个<code>pod</code>方式逐步使用新的<code>PodTemplate</code>，最终实现<code>Pod</code>滚动更新，<code>new-controller.json</code>需要与之前<code>RC</code>在相同的<code>namespace</code>下。</p>
+<blockquote>
+<p><code>语法</code>：rolling-update OLD_CONTROLLER_NAME ([NEW_CONTROLLER_NAME] –image=NEW_CONTAINER_IMAGE | -f NEW_CONTROLLER_SPEC)</p>
+</blockquote>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># 使用frontend-v2.json中的新RC数据更新frontend-v1的pod<br>$ kubectl rolling-<span class="hljs-keyword">update</span> frontend-v1 -f frontend-v2.json<br><br># 使用<span class="hljs-type">JSON</span>数据更新frontend-v1的pod<br>$ cat frontend-v2.json | kubectl rolling-<span class="hljs-keyword">update</span> frontend-v1 -f -<br><br># 其他的一些滚动更新<br>$ kubectl rolling-<span class="hljs-keyword">update</span> frontend-v1 frontend-v2 <span class="hljs-comment">--image=image:v2</span><br><br>$ kubectl rolling-<span class="hljs-keyword">update</span> frontend <span class="hljs-comment">--image=image:v2</span><br><br>$ kubectl rolling-<span class="hljs-keyword">update</span> frontend-v1 frontend-v2 <span class="hljs-comment">--rollback</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>scale命令</strong>：扩容或缩容 <code>Deployment</code>、<code>ReplicaSet</code>、<code>Replication Controller</code>或 <code>Job</code> 中<code>Pod</code>数量</p>
+<p><code>scale</code>也可以指定多个前提条件，如：当前副本数量或 <code>--resource-version</code> ，进行伸缩比例设置前，系统会先验证前提条件是否成立。这个就是<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/as?from_column=20065&from=20065">弹性伸缩</a>策略。</p>
+<blockquote>
+<p><code>语法</code>：kubectl scale [–resource-version=version] [–current-replicas=count] –replicas=COUNT (-f FILENAME | TYPE NAME)</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 将名为foo中的pod副本数设置为3。</span><br>$ kubectl scale <span class="hljs-attribute">--replicas</span>=3 rs/foo<br>kubectl scale deploy/nginx <span class="hljs-attribute">--replicas</span>=30<br><br><span class="hljs-comment"># 将由“foo.yaml”配置文件中指定的资源对象和名称标识的Pod资源副本设为3</span><br>$ kubectl scale <span class="hljs-attribute">--replicas</span>=3 -f foo.yaml<br><br><span class="hljs-comment"># 如果当前副本数为2，则将其扩展至3。</span><br>$ kubectl scale <span class="hljs-attribute">--current-replicas</span>=2 <span class="hljs-attribute">--replicas</span>=3 deployment/mysql<br><br><span class="hljs-comment"># 设置多个RC中Pod副本数量</span><br>$ kubectl scale <span class="hljs-attribute">--replicas</span>=5 rc/foo rc/bar rc/baz<br></code></pre></td></tr></table></figure>
+
+<p><strong>autoscale命令</strong>：这个比<code>scale</code>更加强大，也是弹性伸缩策略 ，它是根据流量的多少来自动进行扩展或者缩容。</p>
+<p>指定<code>Deployment</code>、<code>ReplicaSet</code>或<code>ReplicationController</code>，并创建已经定义好资源的自动伸缩器。使用自动伸缩器可以根据需要自动增加或减少系统中部署的pod数量。</p>
+<blockquote>
+<p><code>语法</code>：kubectl autoscale (-f FILENAME | TYPE NAME | TYPE/NAME) [–min=MINPODS] –max=MAXPODS [–cpu-percent=CPU] [flags]</p>
+</blockquote>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-comment"># 使用 Deployment “foo”设定，使用默认的自动伸缩策略，指定目标CPU使用率，使其Pod数量在2到10之间</span><br>$ kubectl autoscale deployment foo <span class="hljs-attribute">--min</span>=2 <span class="hljs-attribute">--max</span>=10<br><br><span class="hljs-comment"># 使用RC“foo”设定，使其Pod的数量介于1和5之间，CPU使用率维持在80％</span><br>$ kubectl autoscale rc foo <span class="hljs-attribute">--max</span>=5 <span class="hljs-attribute">--cpu-percent</span>=80<br></code></pre></td></tr></table></figure>
+
+<h3 id="集群管理命令：certificate，cluster-info，top，cordon，uncordon，drain，taint"><a href="#集群管理命令：certificate，cluster-info，top，cordon，uncordon，drain，taint" class="headerlink" title="集群管理命令：certificate，cluster-info，top，cordon，uncordon，drain，taint"></a><strong>集群管理命令：certificate，cluster-info，top，cordon，uncordon，drain，taint</strong></h3><p><strong>certificate命令</strong>：用于证书资源管理，授权等</p>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment"># 例如，当有node节点要向master请求，那么是需要master节点授权的</span><br>$ kubectl certificate approve <span class="hljs-keyword">node</span><span class="hljs-title">-csr-81F5uBehyEyLWco5qavBsxc1GzFcZk3aFM3XW5rT3mw</span> <span class="hljs-keyword">node</span><span class="hljs-title">-csr-Ed0kbFhc_q7qx14H3QpqLIUs0uKo036O2SnFpIheM18</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>cluster-info 命令</strong>：显示集群信息</p>
+<p><strong>top 命令</strong>：用于查看资源的cpu，内存磁盘等资源的使用率</p>
+<figure class="highlight nsis"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs nsis"><span class="hljs-comment"># 以前需要heapster，后替换为metrics-server</span><br>$ kubectl <span class="hljs-literal">top</span> pod --<span class="hljs-literal">all</span>-namespaces<br></code></pre></td></tr></table></figure>
+
+<p><strong>cordon命令</strong>：用于标记某个节点不可调度</p>
+<p><strong>uncordon命令</strong>：用于标签节点可以调度</p>
+<p><strong>drain命令</strong>：用于在维护期间排除节点。</p>
+<p><strong>taint命令</strong>：用于给某个<code>Node</code>节点设置污点</p>
+<h3 id="集群故障排查和调试命令：describe，logs，exec，attach，port-foward，proxy，cp，auth"><a href="#集群故障排查和调试命令：describe，logs，exec，attach，port-foward，proxy，cp，auth" class="headerlink" title="集群故障排查和调试命令：describe，logs，exec，attach，port-foward，proxy，cp，auth"></a><strong>集群故障排查和调试命令：describe，logs，exec，attach，port-foward，proxy，cp，auth</strong></h3><p><strong>describe命令</strong>：显示特定资源的详细信息</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-comment"># 查看my-nginx pod的详细状态</span><br>$ kubectl describe po <span class="hljs-keyword">my</span>-nginx<br></code></pre></td></tr></table></figure>
+
+<p><strong>logs命令</strong>：用于在一个pod中打印一个容器的日志，如果pod中只有一个容器，可以省略容器名</p>
+<blockquote>
+<p><code>语法</code>：kubectl logs [-f] [-p] POD [-c CONTAINER]</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 返回仅包含一个容器的pod nginx的日志快照</span><br><span class="hljs-variable">$</span> kubectl logs nginx<br><br><span class="hljs-comment"># 返回pod ruby中已经停止的容器web-1的日志快照</span><br><span class="hljs-variable">$</span> kubectl logs <span class="hljs-literal">-p</span> <span class="hljs-literal">-c</span> ruby web<span class="hljs-literal">-1</span><br><br><span class="hljs-comment"># 持续输出pod ruby中的容器web-1的日志</span><br><span class="hljs-variable">$</span> kubectl logs <span class="hljs-operator">-f</span> <span class="hljs-literal">-c</span> ruby web<span class="hljs-literal">-1</span><br><br><span class="hljs-comment"># 仅输出pod nginx中最近的20条日志</span><br><span class="hljs-variable">$</span> kubectl logs <span class="hljs-literal">--tail</span>=<span class="hljs-number">20</span> nginx<br><br><span class="hljs-comment"># 输出pod nginx中最近一小时内产生的所有日志</span><br><span class="hljs-variable">$</span> kubectl logs <span class="hljs-literal">--since</span>=<span class="hljs-number">1</span><span class="hljs-built_in">h</span> nginx<br></code></pre></td></tr></table></figure>
+
+<p><code>参数选项</code>：</p>
+<ul>
+<li>  -c, –container=””: 容器名。</li>
+<li>  -f, –follow[=false]: 指定是否持续输出日志（实时日志）。</li>
+<li>  --interactive[=true]: 如果为true，当需要时提示用户进行输入。默认为true。</li>
+<li>  --limit-bytes=0: 输出日志的最大字节数。默认无限制。</li>
+<li>  -p, –previous[=false]: 如果为true，输出pod中曾经运行过，但目前已终止的容器的日志。</li>
+<li>  --since=0: 仅返回相对时间范围，如5s、2m或3h，之内的日志。默认返回所有日志。只能同时使用since和since-time中的一种。</li>
+<li>  --since-time=””: 仅返回指定时间（RFC3339格式）之后的日志。默认返回所有日志。只能同时使用since和since-time中的一种。</li>
+<li>  --tail=-1: 要显示的最新的日志条数。默认为-1，显示所有的日志。</li>
+<li>  --timestamps[=false]: 在日志中包含时间戳。</li>
+</ul>
+<p><strong>exec命令</strong>：进入容器进行交互，在容器中执行命令</p>
+<blockquote>
+<p><code>语法</code>：kubectl exec POD [-c CONTAINER] – COMMAND [args…]</p>
+</blockquote>
+<p><code>命令选项</code>：</p>
+<ul>
+<li>  -c, –container=””: 容器名。如果未指定，使用pod中的一个容器。</li>
+<li>  -p, –pod=””: Pod名。</li>
+<li>  -i, –stdin[=false]: 将控制台输入发送到容器。</li>
+<li>  -t, –tty[=false]: 将标准输入控制台作为容器的控制台输入。</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">进入nginx容器，执行一些命令操作</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl <span class="hljs-built_in">exec</span> -it nginx-deployment-58d6d6ccb8-lc5fp bash</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>attach命令</strong>：连接到一个正在运行的容器。</p>
+<blockquote>
+<p><code>语法</code>：kubectl attach POD -c CONTAINER</p>
+</blockquote>
+<p><code>参数选项</code>：</p>
+<ul>
+<li>  -c, –container=””: 容器名。如果省略，则默认选择第一个 pod。</li>
+<li>  -i, –stdin[=false]: 将控制台输入发送到容器。</li>
+<li>  -t, –tty[=false]: 将标准输入控制台作为容器的控制台输入。</li>
+</ul>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-comment"># 获取正在运行中的pod 123456-7890的输出，默认连接到第一个容器</span><br><span class="hljs-variable">$ </span>kubectl attach <span class="hljs-number">123456</span>-<span class="hljs-number">7890</span><br><br><span class="hljs-comment"># 获取pod 123456-7890中ruby-container的输出</span><br><span class="hljs-variable">$ </span>kubectl attach <span class="hljs-number">123456</span>-<span class="hljs-number">7890</span> -c ruby-container<br><br><span class="hljs-comment"># 切换到终端模式，将控制台输入发送到pod 123456-7890的ruby-container的“bash”命令，并将其输出到控制台/</span><br><span class="hljs-comment"># 错误控制台的信息发送回客户端。</span><br><span class="hljs-variable">$ </span>kubectl attach <span class="hljs-number">123456</span>-<span class="hljs-number">7890</span> -c ruby-container -i -t<br></code></pre></td></tr></table></figure>
+
+<p><strong>cp命令</strong>：拷贝文件或者目录到pod容器中</p>
+<p>用于<code>pod</code>和外部的文件交换,类似于<code>docker</code> 的<code>cp</code>，就是将容器中的内容和外部的内容进行交换。</p>
+<h3 id="其他命令：api-servions，config，help，plugin，version"><a href="#其他命令：api-servions，config，help，plugin，version" class="headerlink" title="其他命令：api-servions，config，help，plugin，version"></a><strong>其他命令：api-servions，config，help，plugin，version</strong></h3><p><strong>api-servions命令</strong>：打印受支持的<code>api</code>版本信息</p>
+<figure class="highlight crystal"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs crystal"><span class="hljs-comment"># 打印当前集群支持的api版本</span><br><span class="hljs-variable">$ </span>kubectl api-versions<br></code></pre></td></tr></table></figure>
+
+<p><strong>help命令</strong>：用于查看命令帮助</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs shell"><span class="hljs-meta prompt_"># </span><span class="language-bash">显示全部的命令帮助提示</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl --<span class="hljs-built_in">help</span></span><br><span class="hljs-meta prompt_"></span><br><span class="hljs-meta prompt_"># </span><span class="language-bash">具体的子命令帮助，例如</span><br><span class="hljs-meta prompt_">$ </span><span class="language-bash">kubectl create --<span class="hljs-built_in">help</span></span><br></code></pre></td></tr></table></figure>
+
+<p><strong>config 命令</strong>: 用于修改<code>kubeconfig</code>配置文件（用于访问api，例如配置认证信息）</p>
+<p>设置 <code>kubectl</code> 与哪个 <code>Kubernetes</code> 集群进行通信并修改配置信息。查看 使用 kubeconfig 跨集群授权访问 文档获取详情配置文件信息。</p>
+<figure class="highlight dsconfig"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs dsconfig"><span class="hljs-comment"># 显示合并的 kubeconfig 配置</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">view</span><br><br><span class="hljs-comment"># 同时使用多个 kubeconfig 文件并查看合并的配置</span><br>$ <span class="hljs-string">KUBECONFIG</span>=~/.<span class="hljs-string">kube</span>/<span class="hljs-string">config</span>:~/.<span class="hljs-string">kube</span>/<span class="hljs-string">kubconfig2</span> <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">view</span><br><br><span class="hljs-comment"># 获取 e2e 用户的密码</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">view</span> -<span class="hljs-string">o</span> <span class="hljs-string">jsonpath</span>=<span class="hljs-string">&#x27;&#123;.users[?(@.name == &quot;e2e&quot;)].user.password&#125;&#x27;</span><br><br><span class="hljs-comment"># 展示当前所处的上下文</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">current-context</span><br><br><span class="hljs-comment"># 设置默认的上下文为 my-cluster-name</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">use-context</span> <span class="hljs-string">my-cluster-name</span><br><br><span class="hljs-comment"># 添加新的集群配置到 kubeconf 中，使用 basic auth 进行鉴权</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-built_in">set-credentials</span> <span class="hljs-string">kubeuser</span>/<span class="hljs-string">foo</span>.<span class="hljs-string">kubernetes</span>.<span class="hljs-string">com</span> <span class="hljs-built_in">--username=kubeuser</span> <span class="hljs-built_in">--password=kubepassword</span><br><br><span class="hljs-comment"># 使用特定的用户名和命名空间设置上下文。</span><br>$ <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-built_in">set-context</span> <span class="hljs-string">gce</span> <span class="hljs-built_in">--user=cluster-admin</span> <span class="hljs-built_in">--namespace=foo</span> \<br>  &amp;&amp; <span class="hljs-string">kubectl</span> <span class="hljs-string">config</span> <span class="hljs-string">use-context</span> <span class="hljs-string">gce</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>version 命令</strong>：打印客户端和服务端版本信息</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript"><span class="hljs-comment"># 打印客户端和服务端版本信息</span><br>$ kubectl <span class="hljs-built_in">version</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>plugin 命令</strong>：运行一个命令行插件</p>
+<h3 id="高级命令：apply，patch，replace，convert"><a href="#高级命令：apply，patch，replace，convert" class="headerlink" title="高级命令：apply，patch，replace，convert"></a><strong>高级命令：apply，patch，replace，convert</strong></h3><p><strong>apply命令</strong>：通过文件名或者标准输入对资源应用配置</p>
+<p>通过文件名或控制台输入，对资源进行配置。如果资源不存在，将会新建一个。可以使用 <code>JSON</code> 或者 <code>YAML</code>格式。</p>
+<blockquote>
+<p><code>语法</code>：kubectl apply -f FILENAME</p>
+</blockquote>
+<figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs powershell"><span class="hljs-comment"># 将pod.json中的配置应用到pod</span><br><span class="hljs-variable">$</span> kubectl apply <span class="hljs-operator">-f</span> ./pod.json<br><br><span class="hljs-comment"># 将控制台输入的JSON配置应用到Pod</span><br><span class="hljs-variable">$</span> <span class="hljs-built_in">cat</span> pod.json | kubectl apply <span class="hljs-operator">-f</span> -<br></code></pre></td></tr></table></figure>
+
+<p><code>参数选项</code>：</p>
+<ul>
+<li>  -f, –filename=[]: 包含配置信息的文件名，目录名或者URL。</li>
+<li>  --include-extended-apis[=true]: If true, include definitions of new APIs via calls to the API server. [default true]</li>
+<li>  -o, –output=””: 输出模式。”-o name”为快捷输出(资源/name).</li>
+<li>  --record[=false]: 在资源注释中记录当前 kubectl 命令。</li>
+<li>  -R, –recursive[=false]: Process the directory used in -f, –filename recursively. Useful when you want to manage related manifests organized within the same directory.</li>
+<li>  --schema-cache-dir=”~/.kube/schema”: 非空则将API schema缓存为指定文件，默认缓存到’$HOME/.kube/schema’</li>
+<li>  --validate[=true]: 如果为true，在发送到服务端前先使用schema来验证输入。</li>
+</ul>
+<p><strong>patch命令</strong>：使用补丁修改，更新资源的字段，也就是修改资源的部分内容</p>
+<blockquote>
+<p><code>语法</code>：kubectl patch (-f FILENAME | TYPE NAME) -p PATCH</p>
+</blockquote>
+<figure class="highlight crmsh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs crmsh"><span class="hljs-comment"># Partially update a node using strategic merge patch</span><br>$ kubectl patch <span class="hljs-keyword">node</span> <span class="hljs-title">k8s-node-1</span> -p &#x27;&#123;<span class="hljs-string">&quot;spec&quot;</span>:&#123;<span class="hljs-string">&quot;unschedulable&quot;</span>:<span class="hljs-literal">true</span>&#125;&#125;&#x27;<br><br><span class="hljs-comment"># Update a container&#x27;s image; spec.containers[*].name is required because it&#x27;s a merge key</span><br>$ kubectl patch pod valid-pod -p &#x27;&#123;<span class="hljs-string">&quot;spec&quot;</span>:&#123;<span class="hljs-string">&quot;containers&quot;</span>:[&#123;<span class="hljs-string">&quot;name&quot;</span>:<span class="hljs-string">&quot;kubernetes-serve-hostname&quot;</span>,<span class="hljs-string">&quot;image&quot;</span>:<span class="hljs-string">&quot;new image&quot;</span>&#125;]&#125;&#125;&#x27;<br></code></pre></td></tr></table></figure>
+
+<p><strong>replace命令</strong>：通过文件或者标准输入替换原有资源</p>
+<blockquote>
+<p><code>语法</code>：kubectl replace -f FILENAME</p>
+</blockquote>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver"><span class="hljs-comment"># Replace a pod using the data in pod.json.</span><br>$ kubectl <span class="hljs-built_in">replace</span> -f ./pod.json<br><br><span class="hljs-comment"># Replace a pod based on the JSON passed into stdin.</span><br>$ cat pod.json | kubectl <span class="hljs-built_in">replace</span> -f -<br><br><span class="hljs-comment"># Update a single-container pod&#x27;s image version (tag) to v4</span><br>$ kubectl <span class="hljs-built_in">get</span> pod mypod -o yaml | sed <span class="hljs-string">&#x27;s/\(image: myimage\):.*$/\1:v4/&#x27;</span> | kubectl <span class="hljs-built_in">replace</span> -f -<br><br><span class="hljs-comment"># Force replace, delete and then re-create the resource</span><br>$ kubectl <span class="hljs-built_in">replace</span> <span class="hljs-comment">--force -f ./pod.json</span><br></code></pre></td></tr></table></figure>
+
+<p><strong>convert命令</strong>：不同的版本之间转换配置文件</p>
+<blockquote>
+<p><code>语法</code>：kubectl convert -f FILENAME</p>
+</blockquote>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"># Convert <span class="hljs-string">&#x27;pod.yaml&#x27;</span> <span class="hljs-keyword">to</span> latest <span class="hljs-keyword">version</span> <span class="hljs-keyword">and</span> print <span class="hljs-keyword">to stdout</span>.<br>$ kubectl convert -f pod.yaml<br><br># Convert the live state <span class="hljs-keyword">of</span> the resource specified <span class="hljs-keyword">by</span> <span class="hljs-string">&#x27;pod.yaml&#x27;</span> <span class="hljs-keyword">to</span> the latest <span class="hljs-keyword">version</span><br># <span class="hljs-keyword">and</span> print <span class="hljs-keyword">to stdout</span> <span class="hljs-keyword">in</span> <span class="hljs-type">json</span> <span class="hljs-keyword">format</span>.<br>$ kubectl convert -f pod.yaml <span class="hljs-comment">--local -o json</span><br><br># Convert <span class="hljs-keyword">all</span> files under <span class="hljs-keyword">current</span> directory <span class="hljs-keyword">to</span> latest <span class="hljs-keyword">version</span> <span class="hljs-keyword">and</span> <span class="hljs-keyword">create</span> them <span class="hljs-keyword">all</span>.<br>$ kubectl convert -f . | kubectl <span class="hljs-keyword">create</span> -f -<br></code></pre></td></tr></table></figure>
+
+<h3 id="格式化输出"><a href="#格式化输出" class="headerlink" title="格式化输出"></a><strong>格式化输出</strong></h3><p>要以特定格式将详细信息输出到终端窗口，可以将 <code>-o</code> 或 <code>--output</code> 参数添加到支持的 <code>kubectl</code> 命令。</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-6638172/185w2mdkuc.png" srcset="/my-blog/public/img/loading.gif" lazyload></p>
+<h3 id="Kubectl-日志输出详细程度和调试"><a href="#Kubectl-日志输出详细程度和调试" class="headerlink" title="Kubectl 日志输出详细程度和调试"></a><strong>Kubectl 日志输出详细程度和调试</strong></h3><p><code>Kubectl</code> 日志输出详细程度是通过 <code>-v</code> 或者 <code>--v</code> 来控制的，参数后跟了一个数字表示日志的级别。<code>Kubernetes</code> 通用的日志习惯和相关的日志级别在 这里 有相应的描述。</p>
+<p><img src="https://ask.qcloudimg.com/http-save/yehe-6638172/7punynhvat.png" srcset="/my-blog/public/img/loading.gif" lazyload></p>
+
+
+  
+
+</article>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/my-blog/js/events.js" ></script>
+<script  src="/my-blog/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/my-blog/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script  src="/my-blog/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+  
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/love.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxingxing.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
+<script src="//cdn.jsdelivr.net/gh/bynotes/texiao/source/js/caidai.js"></script>
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/my-blog/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

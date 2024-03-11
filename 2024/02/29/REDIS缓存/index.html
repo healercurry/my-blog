@@ -20,37 +20,24 @@
   
     <meta name="description" content="REDIS缓存1. 基础数据结构 Redis的每种对象其实都由对象结构(redisObject) 与 对应编码的数据结构组合而成，而每种对象类型对应若干编码方式，不同的编码方式所对应的底层数据结构是不同的。 Redis 必须让每个键都带有类型信息, 使得程序可以检查键的类型, 并为它选择合适的处理方式，操作数据类型的命令除了要对键的类型进行检查之外, 还需要根据数据类型的不同编码进行多态处理；从而">
 <meta property="og:type" content="article">
-<meta property="og:title" content="书墨">
+<meta property="og:title" content="REDIS缓存">
 <meta property="og:url" content="https://gitee.com/trxu/2024/02/29/REDIS%E7%BC%93%E5%AD%98/index.html">
 <meta property="og:site_name" content="书墨">
 <meta property="og:description" content="REDIS缓存1. 基础数据结构 Redis的每种对象其实都由对象结构(redisObject) 与 对应编码的数据结构组合而成，而每种对象类型对应若干编码方式，不同的编码方式所对应的底层数据结构是不同的。 Redis 必须让每个键都带有类型信息, 使得程序可以检查键的类型, 并为它选择合适的处理方式，操作数据类型的命令除了要对键的类型进行检查之外, 还需要根据数据类型的不同编码进行多态处理；从而">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-object-1.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-object-2-2.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/image-20240305165400477.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-ds-2.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-ds-x-6.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-x-aof-42.jpg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-x-rdb-2-17097046563823.jpg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-x-aof-4-17097049595405.jpg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-x-aof-2.jpg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/redis-x-aof-5.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-sub-3.svg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-sub-10.svg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-sub-5.svg">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-trans-2.png">
-<meta property="og:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-trans-1.png">
+<meta property="og:image" content="https://gitee.com/my-blog/img/7.jpg">
 <meta property="article:published_time" content="2024-02-29T09:26:21.730Z">
-<meta property="article:modified_time" content="2024-03-06T06:57:42.882Z">
+<meta property="article:modified_time" content="2024-03-11T07:12:16.275Z">
 <meta property="article:author" content="xujw">
+<meta property="article:tag" content="works">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://gitee.com/trxu/2024/02/29/pics/db-redis-object-1.png">
+<meta name="twitter:image" content="https://gitee.com/my-blog/img/7.jpg">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>书墨</title>
+  <title>REDIS缓存 - 书墨</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -312,7 +299,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text=""></span>
+            <span id="subtitle" data-typed-text="REDIS缓存"></span>
           
         </div>
 
@@ -391,7 +378,7 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none"></h1>
+            <h1 style="display: none">REDIS缓存</h1>
             
             
               <div class="markdown-body">
@@ -405,17 +392,17 @@
 <li>对 redisObject 进行分配、共享和销毁的机制</li>
 </ul>
 </blockquote>
-<h4 id="1-0-对象结构-redisObject-与-底层数据结构"><a href="#1-0-对象结构-redisObject-与-底层数据结构" class="headerlink" title="1.0 对象结构(redisObject) 与 底层数据结构"></a>1.0 <strong>对象结构(redisObject)</strong> 与 <strong>底层数据结构</strong></h4><h5 id="1-0-1-redisObject数据结构"><a href="#1-0-1-redisObject数据结构" class="headerlink" title="1.0.1 redisObject数据结构"></a>1.0.1 redisObject数据结构</h5><p><img src="../pics/db-redis-object-1.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h4 id="1-0-对象结构-redisObject-与-底层数据结构"><a href="#1-0-对象结构-redisObject-与-底层数据结构" class="headerlink" title="1.0 对象结构(redisObject) 与 底层数据结构"></a>1.0 <strong>对象结构(redisObject)</strong> 与 <strong>底层数据结构</strong></h4><h5 id="1-0-1-redisObject数据结构"><a href="#1-0-1-redisObject数据结构" class="headerlink" title="1.0.1 redisObject数据结构"></a>1.0.1 redisObject数据结构</h5><p><img src="/my-blog/pics/db-redis-object-1.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs c"><span class="hljs-comment">/*</span><br><span class="hljs-comment"> * Redis 对象</span><br><span class="hljs-comment"> */</span><br><span class="hljs-keyword">typedef</span> <span class="hljs-class"><span class="hljs-keyword">struct</span> <span class="hljs-title">redisObject</span> &#123;</span><br><br>    <span class="hljs-comment">// 类型</span><br>    <span class="hljs-type">unsigned</span> type:<span class="hljs-number">4</span>;<br><br>    <span class="hljs-comment">// 编码方式</span><br>    <span class="hljs-type">unsigned</span> encoding:<span class="hljs-number">4</span>;<br><br>    <span class="hljs-comment">// LRU - 24位, 记录最末一次访问时间（相对于lru_clock）; 或者 LFU（最少使用的数据：8位频率，16位访问时间）</span><br>    <span class="hljs-type">unsigned</span> lru:LRU_BITS; <span class="hljs-comment">// LRU_BITS: 24</span><br><br>    <span class="hljs-comment">// 引用计数</span><br>    <span class="hljs-type">int</span> refcount;<br><br>    <span class="hljs-comment">// 指向底层数据结构实例</span><br>    <span class="hljs-type">void</span> *ptr;<br><br>&#125; robj;<br></code></pre></td></tr></table></figure>
 
 <ul>
 <li><p>总结一句话：根据redisObject 的<code>type</code>属性以及<code>encoding </code>属性找到对应的数据结构，而<code>ptr </code>指针就指向quicklist的对象；</p>
-<p><img src="../pics/db-redis-object-2-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/db-redis-object-2-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 </li>
 </ul>
 <h5 id="1-0-2-底层数据结构"><a href="#1-0-2-底层数据结构" class="headerlink" title="1.0.2 底层数据结构"></a>1.0.2 底层数据结构</h5><ul>
 <li><p>SDS：这是一种用于存储二进制数据的一种结构, 具有动态扩容的特点. 其实现位于src/sds.h与src/sds.c中。<code>len</code> 保存了SDS保存字符串的长度；<code>buf[]</code> 数组用来保存字符串的每个元素；<code>alloc</code>分别以uint8, uint16, uint32, uint64表示整个SDS, 除过头部与末尾的\0, 剩余的字节数；<code>flags</code> 始终为一字节, 以低三位标示着头部的类型, 高5位未使用。</p>
-<p><img src="../pics/image-20240305165400477.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240305165400477"></p>
+<p><img src="/my-blog/pics/image-20240305165400477.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="image-20240305165400477"></p>
 </li>
 </ul>
 <blockquote>
@@ -438,10 +425,10 @@
 </li>
 </ul>
 </blockquote>
-<p><img src="../pics/redis-ds-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/redis-ds-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li><p>压缩列表 - ZipList ：特殊编码的双向链表。它可以存储字符串或者整数，存储整数时是采用整数的二进制而不是字符串形式存储。它能在O(1)的时间复杂度下完成list两端的push和pop操作。但是因为每次操作都需要重新分配ziplist的内存，所以实际复杂度和ziplist的内存使用量相关。</p>
-<p><img src="../pics/db-redis-ds-x-6.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/db-redis-ds-x-6.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 </li>
 <li><p>快表 - QuickList：它是一种以ziplist为结点的双端链表结构. 宏观上, quicklist是一个链表, 微观上, 链表中的每个结点都是一个ziplist。</p>
 </li>
@@ -737,7 +724,7 @@
 <h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>geodist china:city taiyuan shenyang m<br>geodist china:city taiyuan shenyang km</p>
 <h1 id="附近的人-gt-获得所有附近的人的地址-定位-通过半径来查询"><a href="#附近的人-gt-获得所有附近的人的地址-定位-通过半径来查询" class="headerlink" title="附近的人 ==&gt; 获得所有附近的人的地址, 定位, 通过半径来查询"></a>附近的人 ==&gt; 获得所有附近的人的地址, 定位, 通过半径来查询</h1><h1 id="以-100-30-这个坐标为中心-寻找半径为1000km的城市"><a href="#以-100-30-这个坐标为中心-寻找半径为1000km的城市" class="headerlink" title="以 100,30 这个坐标为中心, 寻找半径为1000km的城市"></a>以 100,30 这个坐标为中心, 寻找半径为1000km的城市</h1><p>georadius china:city 110 30 1000 km</p>
 <h1 id="显示与指定成员一定半径范围内的其他成员-参数与-georadius-一样"><a href="#显示与指定成员一定半径范围内的其他成员-参数与-georadius-一样" class="headerlink" title="显示与指定成员一定半径范围内的其他成员 参数与 georadius 一样"></a>显示与指定成员一定半径范围内的其他成员 参数与 georadius 一样</h1><p>georadiusbymember china:city taiyuan 1000 km</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs stata"><br>  :dagger:城市数据:[GEO](http:<span class="hljs-comment">//www.jsons.cn/lngcode)</span><br><br>### 2. 持久化（RDB和AOF）<br><br>#### 2.1 RDB 持久化<br><br>&gt; ​     RDB 就是 Redis DataBase 的缩写，中文名为快照/内存快照，RDB持久化是把当前进程数据生成快照保存到磁盘上的过程，由于是某一时刻的快照，那么快照中的值要早于或者等于内存中的值。<br><br>##### 2.1.1 触发方式<br><br><span class="hljs-comment">* 手工触发</span><br><span class="hljs-comment">  * **save命令**：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间**阻塞**，线上环境不建议使用</span><br><span class="hljs-comment">  * **bgsave命令**：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</span><br><span class="hljs-comment">  * 具体流程如下：</span><br><span class="hljs-comment">    * redis客户端执行bgsave命令或者自动触发bgsave命令；</span><br><span class="hljs-comment">    * 主进程判断当前是否已经存在正在执行的子进程，如果存在，那么主进程直接返回；</span><br><span class="hljs-comment">    * 如果不存在正在执行的子进程，那么就fork一个新的子进程进行持久化数据，fork过程是阻塞的，fork操作完成后主进程即可执行其他操作；</span><br><span class="hljs-comment">    * 子进程先将数据写入到临时的rdb文件中，待快照数据写入完成后再原子替换旧的rdb文件；</span><br><span class="hljs-comment">    * 同时发送信号给主进程，通知主进程rdb持久化完成，主进程更新相关的统计信息（info Persitence下的rdb_*相关选项）。![img](../pics/redis-x-rdb-1.png)</span><br><br><span class="hljs-comment">* 自动触发</span><br><span class="hljs-comment">  * redis.conf中配置`save m n`，即在m秒内有n次修改时，自动触发bgsave生成rdb文件；</span><br><span class="hljs-comment">  * 主从复制时，从节点要从主节点进行全量复制时也会触发bgsave操作，生成当时的快照发送到从节点；</span><br><span class="hljs-comment">  * 执行debug reload命令重新加载redis时也会触发bgsave操作；</span><br><span class="hljs-comment">  * 默认情况下执行shutdown命令时，如果没有开启aof持久化，那么也会触发bgsave操作；</span><br><br>##### 2.1.2 redis.<span class="hljs-keyword">conf</span>中配置RDB<br><br><span class="hljs-comment">**快照周期**：内存快照虽然可以通过技术人员手动执行SAVE或BGSAVE命令来进行，但生产环境下多数情况都会设置其周期性执行条件。</span><br><br>- **Redis中默认的周期新设置**<br><br>```bash<br># 周期性执行条件的设置格式为<br><span class="hljs-keyword">save</span> &lt;seconds&gt; &lt;changes&gt;<br><br># 默认的设置为：<br><span class="hljs-keyword">save</span> 900 1<br><span class="hljs-keyword">save</span> 300 10<br><span class="hljs-keyword">save</span> 60 10000<br><br># 以下设置方式为关闭RDB快照功能<br><span class="hljs-keyword">save</span> <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><code class="hljs stata"><br>  :dagger:城市数据:[GEO](http:<span class="hljs-comment">//www.jsons.cn/lngcode)</span><br><br>### 2. 持久化（RDB和AOF）<br><br>#### 2.1 RDB 持久化<br><br>&gt; ​     RDB 就是 Redis DataBase 的缩写，中文名为快照/内存快照，RDB持久化是把当前进程数据生成快照保存到磁盘上的过程，由于是某一时刻的快照，那么快照中的值要早于或者等于内存中的值。<br><br>##### 2.1.1 触发方式<br><br><span class="hljs-comment">* 手工触发</span><br><span class="hljs-comment">  * **save命令**：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间**阻塞**，线上环境不建议使用</span><br><span class="hljs-comment">  * **bgsave命令**：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</span><br><span class="hljs-comment">  * 具体流程如下：</span><br><span class="hljs-comment">    * redis客户端执行bgsave命令或者自动触发bgsave命令；</span><br><span class="hljs-comment">    * 主进程判断当前是否已经存在正在执行的子进程，如果存在，那么主进程直接返回；</span><br><span class="hljs-comment">    * 如果不存在正在执行的子进程，那么就fork一个新的子进程进行持久化数据，fork过程是阻塞的，fork操作完成后主进程即可执行其他操作；</span><br><span class="hljs-comment">    * 子进程先将数据写入到临时的rdb文件中，待快照数据写入完成后再原子替换旧的rdb文件；</span><br><span class="hljs-comment">    * 同时发送信号给主进程，通知主进程rdb持久化完成，主进程更新相关的统计信息（info Persitence下的rdb_*相关选项）。![img](/my-blog/pics/redis-x-rdb-1.png)</span><br><br><span class="hljs-comment">* 自动触发</span><br><span class="hljs-comment">  * redis.conf中配置`save m n`，即在m秒内有n次修改时，自动触发bgsave生成rdb文件；</span><br><span class="hljs-comment">  * 主从复制时，从节点要从主节点进行全量复制时也会触发bgsave操作，生成当时的快照发送到从节点；</span><br><span class="hljs-comment">  * 执行debug reload命令重新加载redis时也会触发bgsave操作；</span><br><span class="hljs-comment">  * 默认情况下执行shutdown命令时，如果没有开启aof持久化，那么也会触发bgsave操作；</span><br><br>##### 2.1.2 redis.<span class="hljs-keyword">conf</span>中配置RDB<br><br><span class="hljs-comment">**快照周期**：内存快照虽然可以通过技术人员手动执行SAVE或BGSAVE命令来进行，但生产环境下多数情况都会设置其周期性执行条件。</span><br><br>- **Redis中默认的周期新设置**<br><br>```bash<br># 周期性执行条件的设置格式为<br><span class="hljs-keyword">save</span> &lt;seconds&gt; &lt;changes&gt;<br><br># 默认的设置为：<br><span class="hljs-keyword">save</span> 900 1<br><span class="hljs-keyword">save</span> 300 10<br><span class="hljs-keyword">save</span> 60 10000<br><br># 以下设置方式为关闭RDB快照功能<br><span class="hljs-keyword">save</span> <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <p>以上三项默认信息设置代表的意义是：</p>
 <ul>
@@ -753,7 +740,7 @@
 <p><code>stop-writes-on-bgsave-error</code>：上文提到的在快照进行过程中，主进程照样可以接受客户端的任何写操作的特性，是指在快照操作正常的情况下。如果快照操作出现异常（例如操作系统用户权限不够、磁盘空间写满等等）时，Redis就会禁止写操作。这个特性的主要目的是使运维人员在第一时间就发现Redis的运行错误，并进行解决。一些特定的场景下，您可能需要对这个特性进行配置，这时就可以调整这个参数项。该参数项默认情况下值为yes，如果要关闭这个特性，指定即使出现快照错误Redis一样允许写操作，则可以将该值更改为no。</p>
 <p><code>rdbcompression</code>：该属性将在字符串类型的数据被快照到磁盘文件时，启用LZF压缩算法。Redis官方的建议是请保持该选项设置为yes，因为“it’s almost always a win”。</p>
 <p><code>rdbchecksum</code>：从RDB快照功能的version 5 版本开始，一个64位的CRC冗余校验编码会被放置在RDB文件的末尾，以便对整个RDB文件的完整性进行验证。这个功能大概会多损失10%左右的性能，但获得了更高的数据可靠性。所以如果您的Redis服务需要追求极致的性能，就可以将这个选项设置为no。</p>
-<h5 id="2-1-3-深入理解"><a href="#2-1-3-深入理解" class="headerlink" title="2.1.3 深入理解"></a>2.1.3 深入理解</h5><p>​    <img src="../pics/redis-x-aof-42.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-1-3-深入理解"><a href="#2-1-3-深入理解" class="headerlink" title="2.1.3 深入理解"></a>2.1.3 深入理解</h5><p>​    <img src="/my-blog/pics/redis-x-aof-42.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li><p><strong>由于生产环境中我们为Redis开辟的内存区域都比较大（例如6GB），那么将内存中的数据同步到硬盘的过程可能就会持续比较长的时间，而实际情况是这段时间Redis服务一般都会收到数据写操作请求。那么如何保证数据一致性呢</strong>？</p>
 <ul>
@@ -769,7 +756,7 @@
 <li><p><strong>可以每秒做一次快照吗</strong>？</p>
 <ul>
 <li>对于快照来说，所谓“连拍”就是指连续地做快照。这样一来，快照的间隔时间变得很短，即使某一时刻发生宕机了，因为上一时刻快照刚执行，丢失的数据也不会太多。但是，这其中的快照间隔时间就很关键了。</li>
-<li>如下图所示，我们先在 T0 时刻做了一次快照，然后又在 T0+t 时刻做了一次快照，在这期间，数据块 5 和 9 被修改了。如果在 t 这段时间内，机器宕机了，那么，只能按照 T0 时刻的快照进行恢复。此时，数据块 5 和 9 的修改值因为没有快照记录，就无法恢复了。<img src="../pics/redis-x-rdb-2-17097046563823.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></li>
+<li>如下图所示，我们先在 T0 时刻做了一次快照，然后又在 T0+t 时刻做了一次快照，在这期间，数据块 5 和 9 被修改了。如果在 t 这段时间内，机器宕机了，那么，只能按照 T0 时刻的快照进行恢复。此时，数据块 5 和 9 的修改值因为没有快照记录，就无法恢复了。<img src="/my-blog/pics/redis-x-rdb-2-17097046563823.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></li>
 </ul>
 </li>
 </ul>
@@ -803,7 +790,7 @@
 <ul>
 <li><p><strong>命令追加</strong> 当AOF持久化功能打开了，服务器在执行完一个写命令之后，会以协议格式将被执行的写命令追加到服务器的 aof_buf 缓冲区。</p>
 </li>
-<li><p><strong>文件写入和同步</strong> 关于何时将 aof_buf 缓冲区的内容写入AOF文件中，Redis提供了三种写回策略：<img src="../pics/redis-x-aof-4-17097049595405.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<li><p><strong>文件写入和同步</strong> 关于何时将 aof_buf 缓冲区的内容写入AOF文件中，Redis提供了三种写回策略：<img src="/my-blog/pics/redis-x-aof-4-17097049595405.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 </li>
 <li><blockquote>
 <p><code>Always</code>，同步写回：每个写命令执行完，立马同步地将日志写回磁盘；</p>
@@ -824,7 +811,7 @@
 <p><code>no-appendfsync-on-rewrite</code>：always和everysec的设置会使真正的I/O操作高频度的出现，甚至会出现长时间的卡顿情况，这个问题出现在操作系统层面上，所有靠工作在操作系统之上的Redis是没法解决的。为了尽量缓解这个情况，Redis提供了这个设置项，保证在完成fsync函数调用时，不会将这段时间内发生的命令操作放入操作系统的Page Cache（这段时间Redis还在接受客户端的各种写操作命令）。</p>
 <p><code>auto-aof-rewrite-percentage</code>：上文说到在生产环境下，技术人员不可能随时随地使用“BGREWRITEAOF”命令去重写AOF文件。所以更多时候我们需要依靠Redis中对AOF文件的自动重写策略。Redis中对触发自动重写AOF文件的操作提供了两个设置：auto-aof-rewrite-percentage表示如果当前AOF文件的大小超过了上次重写后AOF文件的百分之多少后，就再次开始重写AOF文件。例如该参数值的默认设置值为100，意思就是如果AOF文件的大小超过上次AOF文件重写后的1倍，就启动重写操作。</p>
 <p><code>auto-aof-rewrite-min-size</code>：参考auto-aof-rewrite-percentage选项的介绍，auto-aof-rewrite-min-size设置项表示启动AOF文件重写操作的AOF文件最小大小。如果AOF文件大小低于这个值，则不会触发重写操作。注意，auto-aof-rewrite-percentage和auto-aof-rewrite-min-size只是用来控制Redis中自动对AOF文件进行重写的情况，如果是技术人员手动调用“BGREWRITEAOF”命令，则不受这两个限制条件左右。</p>
-<h5 id="2-2-3-深入理解AOF重写"><a href="#2-2-3-深入理解AOF重写" class="headerlink" title="2.2.3 深入理解AOF重写"></a>2.2.3 深入理解AOF重写</h5><p><img src="../pics/redis-x-aof-2.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-2-3-深入理解AOF重写"><a href="#2-2-3-深入理解AOF重写" class="headerlink" title="2.2.3 深入理解AOF重写"></a>2.2.3 深入理解AOF重写</h5><p><img src="/my-blog/pics/redis-x-aof-2.jpg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li><p><strong>AOF重写会阻塞吗</strong>？</p>
 <ul>
@@ -869,7 +856,7 @@
 <h4 id="2-3-RDB和AOF混合方式（4-0版本"><a href="#2-3-RDB和AOF混合方式（4-0版本" class="headerlink" title="2.3 RDB和AOF混合方式（4.0版本)"></a>2.3 RDB和AOF混合方式（4.0版本)</h4><ul>
 <li>内存快照以一定的频率执行，在两次快照之间，使用 AOF 日志记录这期间的所有命令操作。</li>
 </ul>
-<h4 id="2-4-从持久化中恢复数据"><a href="#2-4-从持久化中恢复数据" class="headerlink" title="2.4 从持久化中恢复数据"></a>2.4 从持久化中恢复数据</h4><p><img src="../pics/redis-x-aof-5.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h4 id="2-4-从持久化中恢复数据"><a href="#2-4-从持久化中恢复数据" class="headerlink" title="2.4 从持久化中恢复数据"></a>2.4 从持久化中恢复数据</h4><p><img src="/my-blog/pics/redis-x-aof-5.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <ul>
 <li>redis重启时判断是否开启aof，如果开启了aof，那么就优先加载aof文件；</li>
 <li>如果aof存在，那么就去加载aof文件，加载成功的话redis重启成功，如果aof文件加载失败，那么会打印日志表示启动失败，此时可以去修复aof文件后重新启动；</li>
@@ -896,13 +883,13 @@
 <li>Redis 发布订阅(pub/sub)是一种消息通信模式：发送者(pub)发送消息，订阅者(sub)接收消息。</li>
 <li>两种模式：基于频道(Channel)的发布/订阅；基于模式(pattern)的发布/订阅</li>
 </ul>
-<h4 id="3-2-Channel-（点对点）"><a href="#3-2-Channel-（点对点）" class="headerlink" title="3.2 Channel （点对点）"></a>3.2 Channel （点对点）</h4><p><img src="../pics/db-redis-sub-3.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h4 id="3-2-Channel-（点对点）"><a href="#3-2-Channel-（点对点）" class="headerlink" title="3.2 Channel （点对点）"></a>3.2 Channel （点对点）</h4><p><img src="/my-blog/pics/db-redis-sub-3.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <blockquote>
 <p>底层由字典数据结构实现，可以理解键值对</p>
 <p>publish channel:1 hi  #发布<br>subscribe channel:1   #进入订阅状态</p>
 </blockquote>
-<h4 id="3-3-pattern-（topic）"><a href="#3-3-pattern-（topic）" class="headerlink" title="3.3 pattern  （topic）"></a>3.3 pattern  （topic）</h4><p><img src="../pics/db-redis-sub-10.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
-<p><img src="../pics/db-redis-sub-5.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<h4 id="3-3-pattern-（topic）"><a href="#3-3-pattern-（topic）" class="headerlink" title="3.3 pattern  （topic）"></a>3.3 pattern  （topic）</h4><p><img src="/my-blog/pics/db-redis-sub-10.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/db-redis-sub-5.svg" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <blockquote>
 <p>底层由链表结构实现</p>
 <p>通配符中?表示1个占位符，*表示任意个占位符(包括0)，?*表示1个以上占位符</p>
@@ -934,7 +921,7 @@
 <li><p>Redis使用WATCH命令来决定事务是继续执行还是回滚，那就需要在MULTI之前使用WATCH来监控某些键值对，然后使用MULTI命令来开启事务，执行对数据结构操作的各种命令，此时这些命令入队列。</p>
 </li>
 <li><p>当使用EXEC执行事务时，首先会比对WATCH所监控的键值对，如果没发生改变，它会执行事务队列中的命令，提交事务；如果发生变化，将不会执行事务中的任何命令，同时事务回滚。当然无论是否回滚，Redis都会取消执行事务前的WATCH命令。</p>
-<p><img src="../pics/db-redis-trans-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/db-redis-trans-2.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 </li>
 </ul>
 </li>
@@ -950,7 +937,7 @@
 <li>如果客户端发送的命令为 EXEC 、 DISCARD 、 WATCH 、 MULTI 四个命令的其中一个， 那么服务器立即执行这个命令。</li>
 <li>与此相反， 如果客户端发送的命令是 EXEC 、 DISCARD 、 WATCH 、 MULTI 四个命令以外的其他命令， 那么服务器并不立即执行这个命令， 而是将这个命令放入一个事务队列里面， 然后向客户端返回 QUEUED 回复。</li>
 </ul>
-<p><img src="../pics/db-redis-trans-1.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
+<p><img src="/my-blog/pics/db-redis-trans-1.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></p>
 <h4 id="5-5-为什么-Redis-不支持回滚？"><a href="#5-5-为什么-Redis-不支持回滚？" class="headerlink" title="5.5 为什么 Redis 不支持回滚？"></a>5.5 为什么 Redis 不支持回滚？</h4><ul>
 <li>Redis 命令只会因为错误的语法而失败（并且这些问题不能在入队时发现），或是命令用在了错误类型的键上面：这也就是说，从实用性的角度来说，失败的命令是由编程错误造成的，而这些错误应该在开发的过程中被发现，而不应该出现在生产环境中。</li>
 <li>因为不需要对回滚进行支持，所以 Redis 的内部可以保持简单且快速。</li>
@@ -963,6 +950,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/my-blog/categories/%E5%90%8E%E7%AB%AF/" class="category-chain-item">后端</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/my-blog/tags/works/">#works</a>
+      
+    </div>
   
 </div>
 
@@ -972,7 +987,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div></div>
+      <div>REDIS缓存</div>
       <div>https://gitee.com/trxu/2024/02/29/REDIS缓存/</div>
     </div>
     <div class="license-meta">
@@ -1017,9 +1032,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/my-blog/2024/03/04/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="">
+                      <a href="/my-blog/2024/03/04/%E5%B9%B6%E5%8F%91%E7%BC%96%E7%A8%8B/" title="并发编程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile"></span>
+                        <span class="hidden-mobile">并发编程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -1027,8 +1042,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/my-blog/2024/02/29/%E5%BC%82%E6%AD%A5%E7%BC%96%E6%8E%92/" title="">
-                        <span class="hidden-mobile"></span>
+                      <a href="/my-blog/2024/02/29/%E5%BC%82%E6%AD%A5%E7%BC%96%E6%8E%92/" title="异步编排使用">
+                        <span class="hidden-mobile">异步编排使用</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

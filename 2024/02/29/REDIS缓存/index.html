@@ -27,7 +27,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://gitee.com/my-blog/img/7.jpg">
 <meta property="article:published_time" content="2024-02-29T09:26:21.730Z">
-<meta property="article:modified_time" content="2024-04-08T08:42:32.643Z">
+<meta property="article:modified_time" content="2024-04-08T08:49:05.527Z">
 <meta property="article:author" content="xujw">
 <meta property="article:tag" content="works">
 <meta name="twitter:card" content="summary_large_image">
@@ -340,7 +340,7 @@
         
         
           <!-- compatible with older versions-->
-          118 分钟
+          116 分钟
         
       </span>
     
@@ -712,20 +712,57 @@
 </li>
 <li><p>这个结构可以非常省内存的去统计各种计数，比如注册 IP 数、每日访问 IP 数、页面实时UV、在线用户数，共同好友数等</p>
 </li>
-<li><p>```bash<br>pfadd key1 a b c d e f g h i    # 创建第一组元素<br>pfcount key1                    # 统计元素的基数数量<br>pfmerge key3 key1 key2            # 合并两组：key1 key2 -&gt; key3 并集</p>
-<figure class="highlight mipsasm"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs mipsasm"><br><span class="hljs-comment">#### 1.8 Bitmap （位存储）</span><br><br>* <span class="hljs-keyword">Bitmap </span>即位图数据结构，都是操作二进制位来进行记录，只有<span class="hljs-number">0</span> 和 <span class="hljs-number">1</span> 两个状态。<br><br>* 应用：统计用户信息，活跃，不活跃！ 登录，未登录！ 打卡，不打卡！ **两个状态的，都可以使用 <span class="hljs-keyword">Bitmaps**！</span><br><span class="hljs-keyword"></span><br>  如果存储一年的打卡状态需要多少内存呢？ <span class="hljs-number">365</span> 天 = <span class="hljs-number">365</span> <span class="hljs-keyword">bit </span><span class="hljs-number">1</span>字节 = <span class="hljs-number">8</span>bit <span class="hljs-number">46</span> 个字节左右！<br><br>* ```<span class="hljs-keyword">bash</span><br><span class="hljs-keyword"></span>  setbit sign <span class="hljs-number">3</span> <span class="hljs-number">0</span>  <span class="hljs-comment"># 周二没打卡</span><br>  getbit sign <span class="hljs-number">3</span><br>  <span class="hljs-keyword">bitcount </span>sign <span class="hljs-comment"># 统计这周的打卡记录，就可以看到是否有全勤！</span><br></code></pre></td></tr></table></figure></li>
 </ul>
-<h4 id="1-9-geospatial-地理位置"><a href="#1-9-geospatial-地理位置" class="headerlink" title="1.9 geospatial (地理位置)"></a>1.9 geospatial (地理位置)</h4><ul>
-<li><p>geo底层的实现原理实际上就是<strong>Zset</strong>, 我们可以通过Zset命令来操作geo</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">pfadd key1 a b c d e f g h i	<span class="hljs-comment"># 创建第一组元素</span><br>pfcount key1					<span class="hljs-comment"># 统计元素的基数数量</span><br>pfmerge key3 key1 key2			<span class="hljs-comment"># 合并两组：key1 key2 -&gt; key3 并集</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-8-Bitmap-（位存储）"><a href="#1-8-Bitmap-（位存储）" class="headerlink" title="1.8 Bitmap （位存储）"></a>1.8 Bitmap （位存储）</h4><ul>
+<li><p>Bitmap 即位图数据结构，都是操作二进制位来进行记录，只有0 和 1 两个状态。</p>
 </li>
-<li><p>```</p>
-<h1 id="当坐标位置超出上述指定范围时，该命令将会返回一个错误。"><a href="#当坐标位置超出上述指定范围时，该命令将会返回一个错误。" class="headerlink" title="当坐标位置超出上述指定范围时，该命令将会返回一个错误。"></a>当坐标位置超出上述指定范围时，该命令将会返回一个错误。</h1><p>geoadd china:city 118.76 32.04 manjing 112.55 37.86 taiyuan 123.43 41.80 shenyang</p>
-<h1 id="获取指定的成员的经度和纬度"><a href="#获取指定的成员的经度和纬度" class="headerlink" title="获取指定的成员的经度和纬度"></a>获取指定的成员的经度和纬度</h1><p>geopos china:city taiyuan manjing</p>
-<h1 id="距离"><a href="#距离" class="headerlink" title="距离"></a>距离</h1><p>geodist china:city taiyuan shenyang m<br>geodist china:city taiyuan shenyang km</p>
-<h1 id="附近的人-gt-获得所有附近的人的地址-定位-通过半径来查询"><a href="#附近的人-gt-获得所有附近的人的地址-定位-通过半径来查询" class="headerlink" title="附近的人 ==&gt; 获得所有附近的人的地址, 定位, 通过半径来查询"></a>附近的人 ==&gt; 获得所有附近的人的地址, 定位, 通过半径来查询</h1><h1 id="以-100-30-这个坐标为中心-寻找半径为1000km的城市"><a href="#以-100-30-这个坐标为中心-寻找半径为1000km的城市" class="headerlink" title="以 100,30 这个坐标为中心, 寻找半径为1000km的城市"></a>以 100,30 这个坐标为中心, 寻找半径为1000km的城市</h1><p>georadius china:city 110 30 1000 km</p>
-<h1 id="显示与指定成员一定半径范围内的其他成员-参数与-georadius-一样"><a href="#显示与指定成员一定半径范围内的其他成员-参数与-georadius-一样" class="headerlink" title="显示与指定成员一定半径范围内的其他成员 参数与 georadius 一样"></a>显示与指定成员一定半径范围内的其他成员 参数与 georadius 一样</h1><p>georadiusbymember china:city taiyuan 1000 km</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><code class="hljs stata"><br><br>### 2. 持久化（RDB和AOF）<br><br>#### 2.1 RDB 持久化<br><br>&gt; ​     RDB 就是 Redis DataBase 的缩写，中文名为快照/内存快照，RDB持久化是把当前进程数据生成快照保存到磁盘上的过程，由于是某一时刻的快照，那么快照中的值要早于或者等于内存中的值。<br><br>##### 2.1.1 触发方式<br><br><span class="hljs-comment">* 手工触发</span><br><span class="hljs-comment">  * **save命令**：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间**阻塞**，线上环境不建议使用</span><br><span class="hljs-comment">  * **bgsave命令**：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</span><br><span class="hljs-comment">  * 具体流程如下：</span><br><span class="hljs-comment">    * redis客户端执行bgsave命令或者自动触发bgsave命令；</span><br><span class="hljs-comment">    * 主进程判断当前是否已经存在正在执行的子进程，如果存在，那么主进程直接返回；</span><br><span class="hljs-comment">    * 如果不存在正在执行的子进程，那么就fork一个新的子进程进行持久化数据，fork过程是阻塞的，fork操作完成后主进程即可执行其他操作；</span><br><span class="hljs-comment">    * 子进程先将数据写入到临时的rdb文件中，待快照数据写入完成后再原子替换旧的rdb文件；</span><br><span class="hljs-comment">    * 同时发送信号给主进程，通知主进程rdb持久化完成，主进程更新相关的统计信息（info Persitence下的rdb_*相关选项）。![img](/my-blog/pics/redis-x-rdb-1.png)</span><br><br><span class="hljs-comment">* 自动触发</span><br><span class="hljs-comment">  * redis.conf中配置`save m n`，即在m秒内有n次修改时，自动触发bgsave生成rdb文件；</span><br><span class="hljs-comment">  * 主从复制时，从节点要从主节点进行全量复制时也会触发bgsave操作，生成当时的快照发送到从节点；</span><br><span class="hljs-comment">  * 执行debug reload命令重新加载redis时也会触发bgsave操作；</span><br><span class="hljs-comment">  * 默认情况下执行shutdown命令时，如果没有开启aof持久化，那么也会触发bgsave操作；</span><br><br>##### 2.1.2 redis.<span class="hljs-keyword">conf</span>中配置RDB<br><br><span class="hljs-comment">**快照周期**：内存快照虽然可以通过技术人员手动执行SAVE或BGSAVE命令来进行，但生产环境下多数情况都会设置其周期性执行条件。</span><br><br>- **Redis中默认的周期新设置**<br><br>```bash<br># 周期性执行条件的设置格式为<br><span class="hljs-keyword">save</span> &lt;seconds&gt; &lt;changes&gt;<br><br># 默认的设置为：<br><span class="hljs-keyword">save</span> 900 1<br><span class="hljs-keyword">save</span> 300 10<br><span class="hljs-keyword">save</span> 60 10000<br><br># 以下设置方式为关闭RDB快照功能<br><span class="hljs-keyword">save</span> <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure></li>
+<li><p>应用：统计用户信息，活跃，不活跃！ 登录，未登录！ 打卡，不打卡！ <strong>两个状态的，都可以使用 Bitmaps</strong>！</p>
+<p>如果存储一年的打卡状态需要多少内存呢？ 365 天 = 365 bit 1字节 = 8bit 46 个字节左右！</p>
+</li>
 </ul>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs bash">setbit sign 3 0  <span class="hljs-comment"># 周二没打卡</span><br>getbit sign 3<br>bitcount sign <span class="hljs-comment"># 统计这周的打卡记录，就可以看到是否有全勤！</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="1-9-geospatial-地理位置"><a href="#1-9-geospatial-地理位置" class="headerlink" title="1.9 geospatial (地理位置)"></a>1.9 geospatial (地理位置)</h4><ul>
+<li>geo底层的实现原理实际上就是<strong>Zset</strong>, 我们可以通过Zset命令来操作geo</li>
+</ul>
+ <figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-comment"># 当坐标位置超出上述指定范围时，该命令将会返回一个错误。</span><br><span class="hljs-attribute">geoadd</span> china:city <span class="hljs-number">118</span>.<span class="hljs-number">76</span> <span class="hljs-number">32</span>.<span class="hljs-number">04</span> manjing <span class="hljs-number">112</span>.<span class="hljs-number">55</span> <span class="hljs-number">37</span>.<span class="hljs-number">86</span> taiyuan <span class="hljs-number">123</span>.<span class="hljs-number">43</span> <span class="hljs-number">41</span>.<span class="hljs-number">80</span> shenyang<br><span class="hljs-comment"># 获取指定的成员的经度和纬度</span><br><span class="hljs-attribute">geopos</span> china:city taiyuan manjing<br><span class="hljs-comment"># 距离</span><br><span class="hljs-attribute">geodist</span> china:city taiyuan shenyang m<br><span class="hljs-attribute">geodist</span> china:city taiyuan shenyang km<br><span class="hljs-comment"># 附近的人 ==&gt; 获得所有附近的人的地址, 定位, 通过半径来查询 </span><br><span class="hljs-comment"># 以 100,30 这个坐标为中心, 寻找半径为1000km的城市</span><br><span class="hljs-attribute">georadius</span> china:city <span class="hljs-number">110</span> <span class="hljs-number">30</span> <span class="hljs-number">1000</span> km<br><span class="hljs-comment"># 显示与指定成员一定半径范围内的其他成员 参数与 georadius 一样</span><br><span class="hljs-attribute">georadiusbymember</span> china:city taiyuan <span class="hljs-number">1000</span> km<br></code></pre></td></tr></table></figure>
+
+
+<h3 id="2-持久化（RDB和AOF）"><a href="#2-持久化（RDB和AOF）" class="headerlink" title="2. 持久化（RDB和AOF）"></a>2. 持久化（RDB和AOF）</h3><h4 id="2-1-RDB-持久化"><a href="#2-1-RDB-持久化" class="headerlink" title="2.1 RDB 持久化"></a>2.1 RDB 持久化</h4><blockquote>
+<p>​     RDB 就是 Redis DataBase 的缩写，中文名为快照/内存快照，RDB持久化是把当前进程数据生成快照保存到磁盘上的过程，由于是某一时刻的快照，那么快照中的值要早于或者等于内存中的值。</p>
+</blockquote>
+<h5 id="2-1-1-触发方式"><a href="#2-1-1-触发方式" class="headerlink" title="2.1.1 触发方式"></a>2.1.1 触发方式</h5><ul>
+<li><p>手工触发</p>
+<ul>
+<li><strong>save命令</strong>：阻塞当前Redis服务器，直到RDB过程完成为止，对于内存 比较大的实例会造成长时间<strong>阻塞</strong>，线上环境不建议使用</li>
+<li><strong>bgsave命令</strong>：Redis进程执行fork操作创建子进程，RDB持久化过程由子 进程负责，完成后自动结束。阻塞只发生在fork阶段，一般时间很短</li>
+<li>具体流程如下：<ul>
+<li>redis客户端执行bgsave命令或者自动触发bgsave命令；</li>
+<li>主进程判断当前是否已经存在正在执行的子进程，如果存在，那么主进程直接返回；</li>
+<li>如果不存在正在执行的子进程，那么就fork一个新的子进程进行持久化数据，fork过程是阻塞的，fork操作完成后主进程即可执行其他操作；</li>
+<li>子进程先将数据写入到临时的rdb文件中，待快照数据写入完成后再原子替换旧的rdb文件；</li>
+<li>同时发送信号给主进程，通知主进程rdb持久化完成，主进程更新相关的统计信息（info Persitence下的rdb_*相关选项）。<img src="/my-blog/pics/redis-x-rdb-1.png" srcset="/my-blog/public/img/loading.gif" lazyload alt="img"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>自动触发</p>
+<ul>
+<li>redis.conf中配置<code>save m n</code>，即在m秒内有n次修改时，自动触发bgsave生成rdb文件；</li>
+<li>主从复制时，从节点要从主节点进行全量复制时也会触发bgsave操作，生成当时的快照发送到从节点；</li>
+<li>执行debug reload命令重新加载redis时也会触发bgsave操作；</li>
+<li>默认情况下执行shutdown命令时，如果没有开启aof持久化，那么也会触发bgsave操作；</li>
+</ul>
+</li>
+</ul>
+<h5 id="2-1-2-redis-conf中配置RDB"><a href="#2-1-2-redis-conf中配置RDB" class="headerlink" title="2.1.2 redis.conf中配置RDB"></a>2.1.2 redis.conf中配置RDB</h5><p><strong>快照周期</strong>：内存快照虽然可以通过技术人员手动执行SAVE或BGSAVE命令来进行，但生产环境下多数情况都会设置其周期性执行条件。</p>
+<ul>
+<li><strong>Redis中默认的周期新设置</strong></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs bash"><span class="hljs-comment"># 周期性执行条件的设置格式为</span><br>save &lt;seconds&gt; &lt;changes&gt;<br><br><span class="hljs-comment"># 默认的设置为：</span><br>save 900 1<br>save 300 10<br>save 60 10000<br><br><span class="hljs-comment"># 以下设置方式为关闭RDB快照功能</span><br>save <span class="hljs-string">&quot;&quot;</span><br></code></pre></td></tr></table></figure>
+
 <p>以上三项默认信息设置代表的意义是：</p>
 <ul>
 <li>如果900秒内有1条Key信息发生变化，则进行快照；</li>
